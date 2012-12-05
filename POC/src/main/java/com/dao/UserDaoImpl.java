@@ -17,7 +17,6 @@ public class UserDaoImpl extends AbstractDaoImpl implements IUserDao {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
