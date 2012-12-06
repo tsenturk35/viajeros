@@ -1,0 +1,1118 @@
+
+	
+	<div class="container">
+		<div class="row">
+			<div class="span10">
+				<!-- google_ad_section_start(name=mkyongregion) -->
+				<div id="post-container">
+					<div id="post-6272" class="post">
+						<h1>Struts 2 creating own interceptor</h1>
+						<div id="post-meta">
+							<span id="post-meta-author"> By <a rel="author"
+								href="http://www.mkyong.com/author/mkyong/"> mkyong</a> - July
+								15, 2010
+							</span> <span class="post-tag"><a rel="tag"
+								href="http://www.mkyong.com/tag/interceptor/">interceptor</a> <a
+								rel="tag" href="http://www.mkyong.com/tag/struts2/">struts2</a></span>
+						</div>
+						<div class="post-content">
+							<script type="text/javascript">google_ad_client="ca-pub-2836379775501347";google_ad_channel="8326250206";google_ad_width=728;google_ad_height=33;google_ad_region="mkyongregion";google_ui_version=1;google_tl=1;google_tfs=14;google_color_link="#0F3B68";google_color_text="#000";google_color_url="#000";google_font_face="arial";</script>
+							<script
+								src="http://pagead2.googlesyndication.com/pagead/show_ads.js"
+								type="text/javascript"></script>
+							<div id="dd_light_ajax_float"
+								style="position: absolute; top: 290px; margin-left: -80px;">
+								<div id="dd_content_wrap">
+									<div class="dd_light_button">
+										<div
+											style="height: 60px; width: 50px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"
+											id="___plusone_0">
+											<iframe scrolling="no" width="100%" frameborder="0"
+												allowtransparency="true" hspace="0" marginheight="0"
+												marginwidth="0"
+												style="position: absolute; top: -10000px; width: 50px; margin: 0px; border-style: none;"
+												tabindex="0" vspace="0" id="I0_1349349216451"
+												name="I0_1349349216451"
+												src="https://plusone.google.com/_/+1/fastbutton?bsv=m&amp;abtk=AEIZW7SK1RR7th4pnn9W%2BrMi1s%2Bsgq6cFq/EpX56tU4Q9oRjphZAKfAS4F/cuYOy%2BA9/eE%2BCHeB4YynlkQRY29xqaLAesB1ijvDlMj%2BUf2ujYoRr/v1wvFI%3D&amp;size=tall&amp;hl=en-US&amp;origin=http%3A%2F%2Fwww.mkyong.com&amp;url=http%3A%2F%2Fwww.mkyong.com%2Fstruts2%2Fstruts-2-creating-own-interceptor%2F&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3DU1sKAeoEldI.en.%2Fsv%3D1%2Fam%3D!EQ7UcY4eiDLo0BUo2w%2Fd%3D1%2Frs%3DAItRSTPkusR1i0hc4aoheOGv0WK9ByR16A#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Conload&amp;id=I0_1349349216451&amp;parent=http%3A%2F%2Fwww.mkyong.com"></iframe>
+										</div>
+									</div>
+									<div class="dd_light_button">
+										<iframe scrolling="no" width="50" height="62" frameborder="0"
+											src="http://www.facebook.com/plugins/like.php?href=http://www.mkyong.com/struts2/struts-2-creating-own-interceptor/&amp;send=false&amp;layout=box_count&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=62&amp;width=50"
+											id="dd-fblike-iframe"></iframe>
+									</div>
+									<div class="dd_light_button">
+										<a data-count="vertical" data-via="mkyong"
+											class="twitter-share-button" href="https://twitter.com/share"></a>
+									</div>
+								</div>
+							</div>
+							<div class="download">
+								Download it &ndash; <a
+									href="http://www.mkyong.com/wp-content/uploads/2010/07/Struts2-Create-Own-Interceptor-Example.zip">Struts2-Create-Own-Interceptor-Example.zip</a>
+							</div>
+							<p>In this tutorial, it shows how to create an own
+								interceptor in Struts 2.</p>
+							<p>Summary steps :</p>
+							<ol>
+								<li>Create a class implements <strong>com.opensymphony.xwork2.interceptor.Interceptor</strong>.
+								</li>
+								<li>Implement the <strong>intercept(ActionInvocation
+										invocation)</strong> method.
+								</li>
+								<li>Configure the interceptor in the <strong>struts.xml</strong>.
+								</li>
+								<li>Link it to action.</li>
+							</ol>
+							<div class="note">
+								<strong>Struts 2 interceptors</strong><br> Struts 2 comes
+								with many ready interceptors, make sure you check the list of
+								the <a target="_blank"
+									href="http://struts.apache.org/2.0.14/docs/interceptors.html">available
+									Struts 2 interceptors</a> before you create your own interceptor.
+							</div>
+							<p>A complete example to create an own interceptor :</p>
+							<h4>1. Action</h4>
+							<p>A simple action to forward the user request and print a
+								message.</p>
+							<p>
+								<strong>HelloAction.java</strong>
+							</p>
+							<div class="wp_syntax">
+								<div class="code">
+									<pre style="font-family: monospace;" class="java">
+										<span style="color: #000000; font-weight: bold;">package</span> <span
+											style="color: #006699;">com.mkyong.common.action</span><span
+											style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">import</span> <span
+											style="color: #006699;">com.opensymphony.xwork2.ActionSupport</span><span
+											style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #000000; font-weight: bold;">class</span> HelloAction <span
+											style="color: #000000; font-weight: bold;">extends</span> ActionSupport<span
+											style="color: #009900;">{</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #003399;">String</span> execute<span
+											style="color: #009900;">(</span><span style="color: #009900;">)</span> <span
+											style="color: #000000; font-weight: bold;">throws</span> <span
+											style="color: #003399;">Exception</span> <span
+											style="color: #009900;">{</span>
+&nbsp;
+		<span style="color: #003399;">System</span>.<span
+											style="color: #006633;">out</span>.<span
+											style="color: #006633;">println</span><span
+											style="color: #009900;">(</span><span style="color: #0000ff;">"HelloAction execute() is called"</span><span
+											style="color: #009900;">)</span><span style="color: #339933;">;</span>
+		<span style="color: #000000; font-weight: bold;">return</span> SUCCESS<span
+											style="color: #339933;">;</span>
+&nbsp;
+	<span style="color: #009900;">}</span>
+<span style="color: #009900;">}</span>
+									</pre>
+								</div>
+							</div>
+							<div>
+								<div style="margin: 20px 0;">
+									<script type="text/javascript">google_ad_client="pub-2836379775501347";google_ad_slot="7391621200";google_ad_width=728;google_ad_height=90;google_ad_region="mkyongregion";</script>
+									<script
+										src="http://pagead2.googlesyndication.com/pagead/show_ads.js"
+										type="text/javascript"></script>
+								</div>
+							</div>
+							<h4>2. Interceptor</h4>
+							<p>A full interceptor example.</p>
+							<p>
+								<strong>PrintMsgInterceptor.java</strong>
+							</p>
+							<div class="wp_syntax">
+								<div class="code">
+									<pre style="font-family: monospace;" class="java">
+										<span style="color: #000000; font-weight: bold;">package</span> <span
+											style="color: #006699;">com.mkyong.common.interceptor</span><span
+											style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">import</span> <span
+											style="color: #006699;">com.opensymphony.xwork2.ActionInvocation</span><span
+											style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">import</span> <span
+											style="color: #006699;">com.opensymphony.xwork2.interceptor.Interceptor</span><span
+											style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #000000; font-weight: bold;">class</span> PrintMsgInterceptor <span
+											style="color: #000000; font-weight: bold;">implements</span> Interceptor<span
+											style="color: #009900;">{</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;">//called during interceptor destruction</span>
+	<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #000066; font-weight: bold;">void</span> destroy<span
+											style="color: #009900;">(</span><span style="color: #009900;">)</span> <span
+											style="color: #009900;">{</span>
+		<span style="color: #003399;">System</span>.<span
+											style="color: #006633;">out</span>.<span
+											style="color: #006633;">println</span><span
+											style="color: #009900;">(</span><span style="color: #0000ff;">"CustomInterceptor destroy() is called..."</span><span
+											style="color: #009900;">)</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">}</span>
+&nbsp;
+	<span style="color: #666666; font-style: italic;">//called during interceptor initialization</span>
+	<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #000066; font-weight: bold;">void</span> init<span
+											style="color: #009900;">(</span><span style="color: #009900;">)</span> <span
+											style="color: #009900;">{</span>
+		<span style="color: #003399;">System</span>.<span
+											style="color: #006633;">out</span>.<span
+											style="color: #006633;">println</span><span
+											style="color: #009900;">(</span><span style="color: #0000ff;">"CustomInterceptor init() is called..."</span><span
+											style="color: #009900;">)</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">}</span>
+&nbsp;
+	<span style="color: #666666; font-style: italic;">//put interceptor code here</span>
+	<span style="color: #000000; font-weight: bold;">public</span> <span
+											style="color: #003399;">String</span> intercept<span
+											style="color: #009900;">(</span>ActionInvocation invocation<span
+											style="color: #009900;">)</span> <span
+											style="color: #000000; font-weight: bold;">throws</span> <span
+											style="color: #003399;">Exception</span> <span
+											style="color: #009900;">{</span>
+&nbsp;
+		<span style="color: #003399;">System</span>.<span
+											style="color: #006633;">out</span>.<span
+											style="color: #006633;">println</span><span
+											style="color: #009900;">(</span><span style="color: #0000ff;">"CustomInterceptor, before invocation.invoke()..."</span><span
+											style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #003399;">String</span> result <span
+											style="color: #339933;">=</span> invocation.<span
+											style="color: #006633;">invoke</span><span
+											style="color: #009900;">(</span><span style="color: #009900;">)</span><span
+											style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #003399;">System</span>.<span
+											style="color: #006633;">out</span>.<span
+											style="color: #006633;">println</span><span
+											style="color: #009900;">(</span><span style="color: #0000ff;">"CustomInterceptor, after invocation.invoke()..."</span><span
+											style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">return</span> result<span
+											style="color: #339933;">;</span>
+	<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #009900;">}</span>
+									</pre>
+								</div>
+							</div>
+							<p>
+								<strong>Explanation</strong><br> The interceptor class must
+								implements the <strong>com.opensymphony.xwork2.interceptor.Interceptor
+									interface</strong>. During interceptor initialization, <strong>init()</strong>
+								is called; interceptor destruction, <strong>destroy()</strong>
+								is called. In last, put all interceptor code that does the work
+								inside the <strong>intercept(ActionInvocation
+									invocation)</strong> method.
+							</p>
+							<div class="warning">
+								<strong>invocation.invoke()</strong><br> In the interceptor
+								intercept() method, you <strong>must called the
+									invocation.invoke()</strong> and return it’s result. This is the method
+								responsible for calling the next interceptor or the action. The
+								action will failed to continue without calling the <strong>invocation.invoke()</strong>
+								method.
+							</div>
+							<div class="warning">
+								<strong>destroy() is not reliable</strong><br> It’s not
+								recommend to put any code inside the <strong>destroy()</strong>,
+								because this method is not reliable. When your application
+								server is force shutdown or be killed by command, the <strong>destroy()</strong>
+								will not be called.
+							</div>
+							<h4>3. struts.xml</h4>
+							<p>
+								Configure the interceptor in the <strong>struts.xml</strong>
+								file.
+							</p>
+							<div class="wp_syntax">
+								<div class="code">
+									<pre style="font-family: monospace;" class="xml">
+										<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;?xml</span> <span
+											style="color: #000066;">version</span>=<span
+											style="color: #ff0000;">"1.0"</span> <span
+											style="color: #000066;">encoding</span>=<span
+											style="color: #ff0000;">"UTF-8"</span> <span
+											style="color: #000000; font-weight: bold;">?&gt;</span></span>
+<span style="color: #00bbdd;">&lt;!DOCTYPE struts PUBLIC</span>
+<span style="color: #00bbdd;">"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</span>
+<span style="color: #00bbdd;">"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;</span>
+&nbsp;
+<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;struts<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;package</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"default"</span> <span
+											style="color: #000066;">namespace</span>=<span
+											style="color: #ff0000;">"/"</span> <span
+											style="color: #000066;">extends</span>=<span
+											style="color: #ff0000;">"struts-default"</span><span
+											style="color: #000000; font-weight: bold;">&gt;</span></span>
+&nbsp;
+    <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptors<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>	
+	<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptor</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"printMsgInterceptor"</span> </span>
+<span style="color: #009900;">	<span style="color: #000066;">class</span>=<span
+											style="color: #ff0000;">"com.mkyong.common.interceptor.PrintMsgInterceptor"</span><span
+											style="color: #000000; font-weight: bold;">&gt;</span><span
+											style="color: #000000; font-weight: bold;">&lt;/interceptor<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+&nbsp;
+         <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptor-stack</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"newStack"</span><span
+											style="color: #000000; font-weight: bold;">&gt;</span></span>
+     		<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptor-ref</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"printMsgInterceptor"</span><span
+											style="color: #000000; font-weight: bold;">/&gt;</span></span>
+		<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptor-ref</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"defaultStack"</span> <span
+											style="color: #000000; font-weight: bold;">/&gt;</span></span>
+          <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/interceptor-stack<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+&nbsp;
+    <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/interceptors<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+&nbsp;
+    <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;action</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"helloAction"</span> </span>
+<span style="color: #009900;">	<span style="color: #000066;">class</span>=<span
+											style="color: #ff0000;">"com.mkyong.common.action.HelloAction"</span> <span
+											style="color: #000000; font-weight: bold;">&gt;</span></span>
+	<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;interceptor-ref</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"newStack"</span><span
+											style="color: #000000; font-weight: bold;">/&gt;</span></span>
+	<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;result</span> <span
+											style="color: #000066;">name</span>=<span
+											style="color: #ff0000;">"success"</span><span
+											style="color: #000000; font-weight: bold;">&gt;</span></span>pages/hello.jsp<span
+											style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/result<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/action<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+&nbsp;
+   <span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/package<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span
+											style="color: #000000; font-weight: bold;">&lt;/struts<span
+												style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+									</pre>
+								</div>
+							</div>
+							<h4>4. Demo</h4>
+							<p>
+								During the server initialization, the interceptor <strong>init()</strong>
+								method is called.
+							</p>
+							<div class="wp_syntax">
+								<div class="code">
+									<pre style="font-family: monospace;" class="bash">INFO: Overriding property struts.i18n.reload - old value: <span
+											style="color: #c20cb9; font-weight: bold;">false</span> new value: <span
+											style="color: #c20cb9; font-weight: bold;">true</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM com.opensymphony.xwork2.util.logging.commons.CommonsLogger info
+INFO: Overriding property struts.configuration.xml.reload - old value: <span
+											style="color: #c20cb9; font-weight: bold;">false</span> new value: <span
+											style="color: #c20cb9; font-weight: bold;">true</span>
+&nbsp;
+CustomInterceptor init<span style="color: #7a0874; font-weight: bold;">(</span><span
+											style="color: #7a0874; font-weight: bold;">)</span> is called...
+&nbsp;
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP<span
+											style="color: #000000; font-weight: bold;">/</span><span
+											style="color: #000000;">1.1</span> on http-<span
+											style="color: #000000;">8080</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on <span
+											style="color: #000000; font-weight: bold;">/</span>0.0.0.0:<span
+											style="color: #000000;">8009</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.jk.server.JkMain start
+INFO: Jk running <span style="color: #007800;">ID</span>=<span
+											style="color: #000000;">0</span> <span
+											style="color: #007800;">time</span>=<span
+											style="color: #000000;">0</span><span
+											style="color: #000000; font-weight: bold;">/</span><span
+											style="color: #000000;">20</span>  <span
+											style="color: #007800;">config</span>=null
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.catalina.startup.Catalina start
+INFO: Server startup <span style="color: #000000; font-weight: bold;">in</span> <span
+											style="color: #000000;">994</span> ms</pre>
+								</div>
+							</div>
+							<p>
+								While you access the action via URL : <em>http://localhost:8080/Struts2Example/helloAction.action</em>
+							</p>
+							<div class="wp_syntax">
+								<div class="code">
+									<pre style="font-family: monospace;" class="bash">INFO: Overriding property struts.i18n.reload - old value: <span
+											style="color: #c20cb9; font-weight: bold;">false</span> new value: <span
+											style="color: #c20cb9; font-weight: bold;">true</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM com.opensymphony.xwork2.util.logging.commons.CommonsLogger info
+INFO: Overriding property struts.configuration.xml.reload - old value: <span
+											style="color: #c20cb9; font-weight: bold;">false</span> new value: <span
+											style="color: #c20cb9; font-weight: bold;">true</span>
+&nbsp;
+CustomInterceptor init<span style="color: #7a0874; font-weight: bold;">(</span><span
+											style="color: #7a0874; font-weight: bold;">)</span> is called...
+&nbsp;
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP<span
+											style="color: #000000; font-weight: bold;">/</span><span
+											style="color: #000000;">1.1</span> on http-<span
+											style="color: #000000;">8080</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on <span
+											style="color: #000000; font-weight: bold;">/</span>0.0.0.0:<span
+											style="color: #000000;">8009</span>
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.jk.server.JkMain start
+INFO: Jk running <span style="color: #007800;">ID</span>=<span
+											style="color: #000000;">0</span> <span
+											style="color: #007800;">time</span>=<span
+											style="color: #000000;">0</span><span
+											style="color: #000000; font-weight: bold;">/</span><span
+											style="color: #000000;">20</span>  <span
+											style="color: #007800;">config</span>=null
+<span style="color: #000000;">15</span> Julai <span
+											style="color: #000000;">2010</span> <span
+											style="color: #000000;">11</span>:<span
+											style="color: #000000;">37</span>:<span
+											style="color: #000000;">42</span> AM org.apache.catalina.startup.Catalina start
+INFO: Server startup <span style="color: #000000; font-weight: bold;">in</span> <span
+											style="color: #000000;">994</span> ms
+&nbsp;
+CustomInterceptor, before invocation.invoke<span
+											style="color: #7a0874; font-weight: bold;">(</span><span
+											style="color: #7a0874; font-weight: bold;">)</span>...
+HelloAction execute<span style="color: #7a0874; font-weight: bold;">(</span><span
+											style="color: #7a0874; font-weight: bold;">)</span> is called
+CustomInterceptor, after invocation.invoke<span
+											style="color: #7a0874; font-weight: bold;">(</span><span
+											style="color: #7a0874; font-weight: bold;">)</span>...</pre>
+								</div>
+							</div>
+							<h4>Reference</h4>
+							<ol>
+								<li><a target="_blank"
+									href="http://struts.apache.org/2.1.8/docs/interceptors.html">Struts
+										2 interceptor documentation</a></li>
+								<li><a
+									href="http://struts.apache.org/2.0.14/docs/building-your-own-interceptor.html">Struts
+										2 building your own interceptor</a></li>
+							</ol>
+							<div id="post-meta-extra">
+								Tags : <span class="post-tag"><a rel="tag"
+									href="http://www.mkyong.com/tag/interceptor/">interceptor</a> <a
+									rel="tag" href="http://www.mkyong.com/tag/struts2/">struts2</a></span>
+							</div>
+							<div id="author-info">
+								<div id="author-avatar">
+									<img width="100" height="100" class="avatar avatar-100 photo"
+										src="http://0.gravatar.com/avatar/622c70d2908e68ecc070ca6754245bb2?s=100&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D100&amp;r=G"
+										alt="">
+								</div>
+								<div id="author-description">
+									<div id="author-link">
+										<a rel="author" href="http://www.mkyong.com/author/mkyong/">
+											mkyong </a>
+									</div>
+									Founder of Mkyong.com, love Java and open source stuff. Follow
+									him on <a href="https://twitter.com/mkyong">Twitter</a>, or
+									befriend him on <a href="http://www.facebook.com/java.tutorial">Facebook</a>
+									or <a href="https://plus.google.com/110948163568945735692">Google
+										Plus</a>.
+								</div>
+								<div class="clearboth"></div>
+							</div>
+							<div id="post-after-related-post">
+								<h4 class="related_post_title">Related Posts</h4>
+								<ul class="related_post">
+									<li><a title="Struts 2 execAndWait interceptor example"
+										href="http://www.mkyong.com/struts2/struts-2-execandwait-interceptor-example/">Struts
+											2 execAndWait interceptor example</a></li>
+									<li><a title="Struts 2 interceptor stack example"
+										href="http://www.mkyong.com/struts2/struts-2-interceptor-stack-example/">Struts
+											2 interceptor stack example</a></li>
+									<li><a
+										title="Struts 2 override the interceptor parameters"
+										href="http://www.mkyong.com/struts2/struts-2-override-the-interceptor-parameters/">Struts
+											2 override the interceptor parameters</a></li>
+									<li><a title="Struts 2 mapping interceptors to action"
+										href="http://www.mkyong.com/struts2/struts-2-mapping-interceptors-to-action/">Struts
+											2 mapping interceptors to action</a></li>
+									<li><a
+										title="Struts 2 + Spring 3 + Quartz 1.8 Scheduler Example"
+										href="http://www.mkyong.com/struts2/struts-2-spring-3-quartz-1-8-scheduler-example/">Struts
+											2 + Spring 3 + Quartz 1.8 Scheduler Example</a></li>
+								</ul>
+							</div>
+							<div id="post-after-popular-post">
+								<h4>Popular Posts</h4>
+								<ul>
+									<li><a href="/featured/top-8-java-people-you-should-know/">Top
+											8 Java People You Should Know</a></li>
+									<li><a href="/featured/top-20-java-websites/">Top 20
+											Java Websites</a></li>
+									<li><a href="/featured/top-5-free-java-ebooks/">Top 5
+											Free Java eBooks</a></li>
+									<li><a
+										href="/regular-expressions/10-java-regular-expression-examples-you-should-know/">Top
+											10 Java Regular Expression Examples</a></li>
+									<li><a href="/featured/top-5-open-source-qa-systems/">Top
+											5 Open Source Q&amp;A Systems</a></li>
+								</ul>
+							</div>
+							<div class="clearboth"></div>
+						</div>
+					</div>
+					<div id="st-tutorial-list">
+						<div id="st-tutorial-title">You might also like following
+							tutorials :</div>
+						<ul>
+							<li><a title="Struts 2.x Tutorials"
+								href="/tutorials/struts-2-tutorials/"><div
+										class="images img-border img-struts2"></div></a></li>
+							<li><a title="Hibernate Tutorials"
+								href="/tutorials/hibernate-tutorials/"><div
+										class="images img-border img-hibernate"></div></a></li>
+							<li><a title="JSF 2 Tutorials"
+								href="/tutorials/jsf-2-0-tutorials/"><div
+										class="images img-border img-jsf2"></div></a></li>
+							<li><a title="Java Tutorials" href="/tag/java/"><div
+										class="images img-border img-java"></div></a></li>
+							<li><a title="Spring Tutorials"
+								href="/tutorials/spring-tutorials/"><div
+										class="images img-border img-spring"></div></a></li>
+						</ul>
+						<div class="clearboth"></div>
+					</div>
+					<div id="post-comments">
+						<div id="comments">
+							<ol class="commentlist">
+								<li id="li-comment-120038"
+									class="comment even thread-even depth-1 comment-box"><div
+										class="comment" id="comment-120038">
+										<div class="comment-author vcard">
+											<img width="50" height="50" class="avatar avatar-50 photo"
+												src="http://0.gravatar.com/avatar/8cff75888d13885dfe0ab8087086af65?s=50&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D50&amp;r=G"
+												alt=""><span class="fn">saran</span> <span
+												class="comments-date">September 27, 2012 at 9:27 pm</span>
+											<div class="clearboth"></div>
+										</div>
+										<div class="comment-content">
+											<p>
+												Please clarify my doubt? iam new to struts2<br> i have
+												an custom interceptor for checking session valid or not. i
+												am returning “login” if session is invalid. now my aim is to
+												display login page if the if interceptor returns “login” .
+												but i dont know how to handle returned string “loing” here
+												is my code.
+											</p>
+											<div class="wp_syntax">
+												<div class="code">
+													<pre style="font-family: monospace;" class="java"> <span
+															style="color: #003399;">Map</span> session <span
+															style="color: #339933;">=</span> ActionContext.<span
+															style="color: #006633;">getContext</span><span
+															style="color: #009900;">(</span><span
+															style="color: #009900;">)</span>.<span
+															style="color: #006633;">getSession</span><span
+															style="color: #009900;">(</span><span
+															style="color: #009900;">)</span><span
+															style="color: #339933;">;</span>
+			<span style="color: #000000; font-weight: bold;">if</span><span
+															style="color: #009900;">(</span>session.<span
+															style="color: #006633;">get</span><span
+															style="color: #009900;">(</span><span
+															style="color: #0000ff;">"user"</span><span
+															style="color: #009900;">)</span> <span
+															style="color: #339933;">!=</span> <span
+															style="color: #000066; font-weight: bold;">null</span> <span
+															style="color: #009900;">)</span><span
+															style="color: #009900;">{</span>
+			<span style="color: #000000; font-weight: bold;">return</span> invocation.<span
+															style="color: #006633;">invoke</span><span
+															style="color: #009900;">(</span><span
+															style="color: #009900;">)</span><span
+															style="color: #339933;">;</span>
+			<span style="color: #000000; font-weight: bold;">else</span>
+                        <span style="color: #000000; font-weight: bold;">return</span> <span
+															style="color: #0000ff;">"login"</span><span
+															style="color: #339933;">;</span>
+													</pre>
+												</div>
+											</div>
+											<div class="wp_syntax">
+												<div class="code">
+													<pre style="font-family: monospace;" class="xml">
+														<span style="color: #009900;"><span
+															style="color: #000000; font-weight: bold;">&lt;interceptor</span> <span
+															style="color: #000066;">name</span>=<span
+															style="color: #ff0000;">"sessionCheck"</span> <span
+															style="color: #000066;">class</span>=<span
+															style="color: #ff0000;">"com.edu.interceptor.SessionCheckInterceptor"</span><span
+															style="color: #000000; font-weight: bold;">&gt;</span><span
+															style="color: #000000; font-weight: bold;">&lt;/interceptor<span
+																style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+													</pre>
+												</div>
+											</div>
+											<p>my action class is as follows:</p>
+											<div class="wp_syntax">
+												<div class="code">
+													<pre style="font-family: monospace;" class="java">@ParentPackage<span
+															style="color: #009900;">(</span><span
+															style="color: #0000ff;">"myParentPackage"</span><span
+															style="color: #009900;">)</span>
+@InterceptorRef<span style="color: #009900;">(</span>value <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"sessionCheck"</span><span
+															style="color: #009900;">)</span>
+<span style="color: #000000; font-weight: bold;">public</span> <span
+															style="color: #000000; font-weight: bold;">class</span> CreateCustomer <span
+															style="color: #000000; font-weight: bold;">extends</span> ActionSupport<span
+															style="color: #009900;">{</span>
+@<span style="color: #003399;">Action</span><span
+															style="color: #009900;">(</span>value <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"/createCustomerAction"</span> ,results <span
+															style="color: #339933;">=</span> <span
+															style="color: #009900;">{</span>	@Result<span
+															style="color: #009900;">(</span>name <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"success"</span> , type <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"json"</span><span
+															style="color: #009900;">)</span>, @Result<span
+															style="color: #009900;">(</span>name <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"input"</span> , type <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"json"</span><span
+															style="color: #009900;">)</span>, @Result<span
+															style="color: #009900;">(</span>name <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"login"</span> , location <span
+															style="color: #339933;">=</span> <span
+															style="color: #0000ff;">"/login.jsp"</span><span
+															style="color: #009900;">)</span><span
+															style="color: #009900;">}</span><span
+															style="color: #009900;">)</span>
+	<span style="color: #000000; font-weight: bold;">public</span>  <span
+															style="color: #003399;">String</span> execute<span
+															style="color: #009900;">(</span><span
+															style="color: #009900;">)</span> <span
+															style="color: #009900;">{</span>
+		<span style="color: #000000; font-weight: bold;">return</span> SUCCESS<span
+															style="color: #339933;">;</span>
+	<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #009900;">}</span>
+													</pre>
+												</div>
+											</div>
+										</div>
+										<div class="reply">
+											<a
+												onclick="return addComment.moveForm(&quot;comment-120038&quot;, &quot;120038&quot;, &quot;respond&quot;, &quot;6272&quot;)"
+												href="/struts2/struts-2-creating-own-interceptor/?replytocom=120038#respond"
+												class="comment-reply-link"><button class="btn btn-info">Reply</button></a>
+										</div>
+										<div class="clearboth"></div>
+									</div></li>
+								<li id="li-comment-84847"
+									class="comment odd alt thread-odd thread-alt depth-1 comment-box"><div
+										class="comment" id="comment-84847">
+										<div class="comment-author vcard">
+											<img width="50" height="50" class="avatar avatar-50 photo"
+												src="http://0.gravatar.com/avatar/0e6bbc292421ad96240d0bced9f5b4f7?s=50&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D50&amp;r=G"
+												alt=""><span class="fn">Javier</span> <span
+												class="comments-date">August 1, 2012 at 4:12 am</span>
+											<div class="clearboth"></div>
+										</div>
+										<div class="comment-content">
+											<p>
+												Excellent post.<br> I make an interceptor to manage my
+												Hibernate transactions.<br> In this applications, I
+												work with annotations. It’s my first time. And I want to
+												link my action with my created interceptor. I know that I
+												have the annotations: InterceptorRef or InterceptorRefs to
+												link my action. But, is there some annotation to declare my
+												interceptor without use the struts.xml file?<br>
+												Thanks.
+											</p>
+										</div>
+										<div class="reply">
+											<a
+												onclick="return addComment.moveForm(&quot;comment-84847&quot;, &quot;84847&quot;, &quot;respond&quot;, &quot;6272&quot;)"
+												href="/struts2/struts-2-creating-own-interceptor/?replytocom=84847#respond"
+												class="comment-reply-link"><button class="btn btn-info">Reply</button></a>
+										</div>
+										<div class="clearboth"></div>
+									</div></li>
+								<li id="li-comment-83579"
+									class="comment even thread-even depth-1 comment-box"><div
+										class="comment" id="comment-83579">
+										<div class="comment-author vcard">
+											<img width="50" height="50" class="avatar avatar-50 photo"
+												src="http://1.gravatar.com/avatar/d0cae50112925a2cb5bef639234c726c?s=50&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D50&amp;r=G"
+												alt=""><span class="fn">abhishek</span> <span
+												class="comments-date">June 23, 2012 at 5:03 pm</span>
+											<div class="clearboth"></div>
+										</div>
+										<div class="comment-content">
+											<p>exception while working with interceptor:</p>
+											<p>type Exception report</p>
+											<p>message</p>
+											<p>descriptionThe server encountered an internal error ()
+												that prevented it from fulfilling this request.</p>
+											<p>exception</p>
+											<p>
+												org.apache.jasper.JasperException: The Struts dispatcher
+												cannot be found. This is usually caused by using Struts tags
+												without the associated filter. Struts tags are only usable
+												when the request has passed through its servlet filter,
+												which initializes the Struts dispatcher needed for this tag.
+												&ndash; [unknown location]<br> root cause
+											</p>
+											<p>
+												The Struts dispatcher cannot be found. This is usually
+												caused by using Struts tags without the associated filter.
+												Struts tags are only usable when the request has passed
+												through its servlet filter, which initializes the Struts
+												dispatcher needed for this tag. &ndash; [unknown location]<br>
+												note The full stack traces of the exception and its root
+												causes are available in the GlassFish Server Open Source
+												Edition 3.1.1 logs.
+											</p>
+											<p>
+												coding in mapping file<br> &mdash;session.xml&mdash;
+											</p>
+											<p>?</p>
+											<p></p>
+											<p></p>
+											<p>index.jsp</p>
+											<p>&mdash;srtuts.xml&mdash;</p>
+										</div>
+										<div class="reply">
+											<a
+												onclick="return addComment.moveForm(&quot;comment-83579&quot;, &quot;83579&quot;, &quot;respond&quot;, &quot;6272&quot;)"
+												href="/struts2/struts-2-creating-own-interceptor/?replytocom=83579#respond"
+												class="comment-reply-link"><button class="btn btn-info">Reply</button></a>
+										</div>
+										<div class="clearboth"></div>
+									</div></li>
+								<li id="li-comment-83523"
+									class="comment odd alt thread-odd thread-alt depth-1 comment-box"><div
+										class="comment" id="comment-83523">
+										<div class="comment-author vcard">
+											<img width="50" height="50" class="avatar avatar-50 photo"
+												src="http://0.gravatar.com/avatar/e25e71789dc233f4c6436bf924649528?s=50&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D50&amp;r=G"
+												alt=""><span class="fn">Jeremy Lee</span> <span
+												class="comments-date">June 21, 2012 at 9:28 am</span>
+											<div class="clearboth"></div>
+										</div>
+										<div class="comment-content">
+											<p>
+												oh, i get it !<br> Maybe the jar is broken
+											</p>
+											<p>
+												2012-6-21 9:05:40
+												org.apache.catalina.loader.WebappClassLoader modified<br>
+												??: Additional JARs have been added :
+												‘struts2-dojo-plugin-2.1.8.jar’
+											</p>
+										</div>
+										<div class="reply">
+											<a
+												onclick="return addComment.moveForm(&quot;comment-83523&quot;, &quot;83523&quot;, &quot;respond&quot;, &quot;6272&quot;)"
+												href="/struts2/struts-2-creating-own-interceptor/?replytocom=83523#respond"
+												class="comment-reply-link"><button class="btn btn-info">Reply</button></a>
+										</div>
+										<div class="clearboth"></div>
+									</div></li>
+								<li id="li-comment-83522"
+									class="comment even thread-even depth-1 comment-box"><div
+										class="comment" id="comment-83522">
+										<div class="comment-author vcard">
+											<img width="50" height="50" class="avatar avatar-50 photo"
+												src="http://0.gravatar.com/avatar/e25e71789dc233f4c6436bf924649528?s=50&amp;d=http%3A%2F%2Fwww.mkyong.com%2Fwp-content%2Fthemes%2Fmkyongnew%2Fimages%2Favatar-guest.jpg%3Fs%3D50&amp;r=G"
+												alt=""><span class="fn">Jeremy Lee</span> <span
+												class="comments-date">June 21, 2012 at 9:17 am</span>
+											<div class="clearboth"></div>
+										</div>
+										<div class="comment-content">
+											<p>
+												There is something wrong when i run the program on Tomcat 6,
+												something wrong happened,that is “CustomInterceptor init()
+												is called…” is printed out every 2 seconds, when I don’t
+												even make any request to the application. Why?<br>
+												==============================<br> 2012-6-21 9:05:17
+												org.apache.tomcat.util.digester.SetPropertiesRule begin<br>
+												??: [SetPropertiesRule]{Server/Service/Engine/Host/Context}
+												Setting property ‘source’ to
+												‘org.eclipse.jst.j2ee.server:Struts2ExampleInterceptor’ did
+												not find a matching property.<br> 2012-6-21 9:05:17
+												org.apache.catalina.core.AprLifecycleListener init<br>
+												??: The APR based Apache Tomcat Native library which allows
+												optimal performance in production environments was not found
+												on the java.library.path:
+												C:\Java\jdk1.5.0_06\bin;.;C:\WINDOWS\system32;C:\WINDOWS;C:\Program
+												Files\Windows Resource
+												Kits\Tools\;D:\oracle\ora92\bin;D:\app\liguocai\product\11.1.0\db_1\bin;D:\oracle\ora92\bin;C:\Java\jdk1.5.0_06\bin;C:\Program
+												Files\Oracle\jre\1.3.1\bin;C:\Program
+												Files\Oracle\jre\1.1.8\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program
+												Files\Intel\WiFi\bin\;C:\Program Files\Common
+												Files\Intel\WirelessCommon\;C:\Program Files\NTRU
+												Cryptosystems\NTRU TCG Software
+												Stack\bin\;E:\DevEnviroment\TortoiseSVN\bin;E:\DevEnviroment\apache-ant-1.8.2\bin;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program
+												Files\Android\android-sdk\tools;E:\PROGRA~1\IBM\SQLLIB\BIN;E:\PROGRA~1\IBM\SQLLIB\FUNCTION;E:\PROGRA~1\IBM\SQLLIB\SAMPLES\REPL;F:\Program
+												Files\Microsoft Visual Studio\Common\Tools\WinNT;F:\Program
+												Files\Microsoft Visual Studio\Common\MSDev98\Bin;F:\Program
+												Files\Microsoft Visual Studio\Common\Tools;F:\Program
+												Files\Microsoft Visual Studio\VC98\bin;C:\Program
+												Files\StormII\Codec;C:\Program Files\StormII;C:\Program
+												Files\Intel\WiFi\bin\;C:\Program Files\Common
+												Files\Intel\WirelessCommon\;F:\python27;F:\python27\Scripts;<br>
+												2012-6-21 9:05:17 org.apache.coyote.http11.Http11Protocol
+												init<br> ??: Initializing Coyote HTTP/1.1 on http-9080<br>
+												2012-6-21 9:05:17 org.apache.catalina.startup.Catalina load<br>
+												??: Initialization processed in 669 ms<br> 2012-6-21
+												9:05:17 org.apache.catalina.core.StandardService start<br>
+												??: Starting service Catalina<br> 2012-6-21 9:05:17
+												org.apache.catalina.core.StandardEngine start<br> ??:
+												Starting Servlet Engine: Apache Tomcat/6.0.20<br>
+												2012-6-21 9:05:17
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-default.xml]<br> 2012-6-21 9:05:18
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Unable to locate configuration files of
+												the name struts-plugin.xml, skipping<br> 2012-6-21
+												9:05:18
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-plugin.xml]<br> 2012-6-21 9:05:18
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file [struts.xml]<br>
+												2012-6-21 9:05:18
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property struts.i18n.reload
+												&ndash; old value: false new value: true<br> 2012-6-21
+												9:05:18
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property
+												struts.configuration.xml.reload &ndash; old value: false new
+												value: true<br> CustomInterceptor init() is called…<br>
+												2012-6-21 9:05:19 org.apache.coyote.http11.Http11Protocol
+												start<br> ??: Starting Coyote HTTP/1.1 on http-9080<br>
+												2012-6-21 9:05:19 org.apache.jk.common.ChannelSocket init<br>
+												??: JK: ajp13 listening on /0.0.0.0:9016<br> 2012-6-21
+												9:05:19 org.apache.jk.server.JkMain start<br> ??: Jk
+												running ID=0 time=0/31 config=null<br> 2012-6-21
+												9:05:19 org.apache.catalina.startup.Catalina start<br>
+												??: Server startup in 1903 ms<br> 2012-6-21 9:05:29
+												org.apache.catalina.loader.WebappClassLoader modified<br>
+												??: Additional JARs have been added :
+												‘struts2-dojo-plugin-2.1.8.jar’<br> 2012-6-21 9:05:29
+												org.apache.catalina.core.StandardContext reload<br> ??:
+												Reloading this Context has started<br>
+												CustomInterceptor destroy() is called…<br> 2012-6-21
+												9:05:29
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-default.xml]<br> 2012-6-21 9:05:30
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Unable to locate configuration files of
+												the name struts-plugin.xml, skipping<br> 2012-6-21
+												9:05:30
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-plugin.xml]<br> 2012-6-21 9:05:30
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file [struts.xml]<br>
+												2012-6-21 9:05:30
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property struts.i18n.reload
+												&ndash; old value: false new value: true<br> 2012-6-21
+												9:05:30
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property
+												struts.configuration.xml.reload &ndash; old value: false new
+												value: true<br> CustomInterceptor init() is called…<br>
+												2012-6-21 9:05:40
+												org.apache.catalina.loader.WebappClassLoader modified<br>
+												??: Additional JARs have been added :
+												‘struts2-dojo-plugin-2.1.8.jar’<br> 2012-6-21 9:05:40
+												org.apache.catalina.core.StandardContext reload<br> ??:
+												Reloading this Context has started<br>
+												CustomInterceptor destroy() is called…<br> 2012-6-21
+												9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-default.xml]<br> 2012-6-21 9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Unable to locate configuration files of
+												the name struts-plugin.xml, skipping<br> 2012-6-21
+												9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-plugin.xml]<br> 2012-6-21 9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file [struts.xml]<br>
+												2012-6-21 9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property struts.i18n.reload
+												&ndash; old value: false new value: true<br> 2012-6-21
+												9:05:41
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property
+												struts.configuration.xml.reload &ndash; old value: false new
+												value: true<br> CustomInterceptor init() is called…<br>
+												2012-6-21 9:05:51
+												org.apache.catalina.loader.WebappClassLoader modified<br>
+												??: Additional JARs have been added :
+												‘struts2-dojo-plugin-2.1.8.jar’<br> 2012-6-21 9:05:51
+												org.apache.catalina.core.StandardContext reload<br> ??:
+												Reloading this Context has started<br>
+												CustomInterceptor destroy() is called…<br> 2012-6-21
+												9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-default.xml]<br> 2012-6-21 9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Unable to locate configuration files of
+												the name struts-plugin.xml, skipping<br> 2012-6-21
+												9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file
+												[struts-plugin.xml]<br> 2012-6-21 9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Parsing configuration file [struts.xml]<br>
+												2012-6-21 9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property struts.i18n.reload
+												&ndash; old value: false new value: true<br> 2012-6-21
+												9:05:52
+												com.opensymphony.xwork2.util.logging.commons.CommonsLogger
+												info<br> ??: Overriding property
+												struts.configuration.xml.reload &ndash; old value: false new
+												value: true<br> CustomInterceptor init() is called…
+											</p>
+										</div>
+										<div class="reply">
+											<a
+												onclick="return addComment.moveForm(&quot;comment-83522&quot;, &quot;83522&quot;, &quot;respond&quot;, &quot;6272&quot;)"
+												href="/struts2/struts-2-creating-own-interceptor/?replytocom=83522#respond"
+												class="comment-reply-link"><button class="btn btn-info">Reply</button></a>
+										</div>
+										<div class="clearboth"></div>
+									</div></li>
+							</ol>
+							<div id="respond">
+								<h3 id="reply-title"></h3>
+								<h4 class="reply-title">I'd love your thoughts</h4>
+								<small><a style="display: none;"
+									href="/struts2/struts-2-creating-own-interceptor/#respond"
+									id="cancel-comment-reply-link" rel="nofollow"><button
+											class="btn btn-danger cancel-reply">Cancel Reply</button></a></small>
+								<form id="commentform" method="post"
+									action="http://www.mkyong.com/wp-comments-post.php">
+									<p class="comment-notes">
+										Your email address will not be published. Required fields are
+										marked <span class="required">*</span>
+									</p>
+									<div>
+										<input type="text" size="30" value="" name="author"
+											id="author"><span class="comment-form-label">Name<span
+											class="required"> * </span></span>
+									</div>
+									<div>
+										<input type="text" size="30" value="" name="email" id="email"><span
+											class="comment-form-label">Email<span class="required">
+												* </span></span>
+									</div>
+									<div>
+										<input type="text" size="30" value="" name="url" id="url"><span
+											class="comment-form-label">Website</span>
+									</div>
+									<div id="comment-form-textarea" class="comment-form-comment">
+										<label for="comment">Comment</label>
+										<textarea aria-required="true" rows="8" cols="90"
+											name="comment" id="comment"></textarea>
+									</div>
+									<div class="note">
+										<strong>Note</strong><br>To post source code in comment,
+										uses
+										<code>&lt;pre lang="language"&gt;&lt;/pre&gt;</code>
+										tag, for examples :
+										<ul>
+											<li><code>&lt;pre lang="java"&gt; Java source
+													code here &lt;/pre&gt;</code></li>
+											<li><code>&lt;pre lang="xml"&gt; XML here
+													&lt;/pre&gt;</code></li>
+										</ul>
+									</div>
+									<p class="form-submit">
+										<input type="submit" value="Post Comment" id="submit"
+											name="submit"> <input type="hidden"
+											id="comment_post_ID" value="6272" name="comment_post_ID">
+										<input type="hidden" value="0" id="comment_parent"
+											name="comment_parent">
+									</p>
+									<p style="display: none;">
+										<input type="hidden" value="62402c5449"
+											name="akismet_comment_nonce" id="akismet_comment_nonce">
+									</p>
+									<p class="subscribe-to-comments" style="clear: both;">
+										<input type="checkbox" style="width: auto;" value="subscribe"
+											id="subscribe" name="subscribe"> <label
+											for="subscribe">Notify me of followup comments via
+											e-mail</label>
+									</p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- google_ad_section_end -->
+			</div>
+			<div class="span4">
+				<div id="sidebar">
+					<div>
+						<span><iframe scrolling="no" frameborder="0"
+								allowtransparency="true"
+								style="border: none; overflow: hidden; width: 90px; height: 21px;"
+								src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fjava.tutorial&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=265494296867482"></iframe></span><span
+							style="margin-right: 4px"><div
+								style="height: 20px; width: 32px; display: inline-block; text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;"
+								id="___plusone_1">
+								<iframe scrolling="no" width="100%" frameborder="0"
+									allowtransparency="true" hspace="0" marginheight="0"
+									marginwidth="0"
+									style="position: absolute; top: -10000px; width: 32px; margin: 0px; border-style: none;"
+									tabindex="0" vspace="0" id="I1_1349349216455"
+									name="I1_1349349216455"
+									src="https://plusone.google.com/_/+1/fastbutton?bsv=m&amp;abtk=AEIZW7SK1RR7th4pnn9W%2BrMi1s%2Bsgq6cFq/EpX56tU4Q9oRjphZAKfAS4F/cuYOy%2BA9/eE%2BCHeB4YynlkQRY29xqaLAesB1ijvDlMj%2BUf2ujYoRr/v1wvFI%3D&amp;annotation=none&amp;size=medium&amp;hl=en-US&amp;origin=http%3A%2F%2Fwww.mkyong.com&amp;url=http%3A%2F%2Fwww.mkyong.com%2F&amp;jsh=m%3B%2F_%2Fapps-static%2F_%2Fjs%2Fgapi%2F__features__%2Frt%3Dj%2Fver%3DU1sKAeoEldI.en.%2Fsv%3D1%2Fam%3D!EQ7UcY4eiDLo0BUo2w%2Fd%3D1%2Frs%3DAItRSTPkusR1i0hc4aoheOGv0WK9ByR16A#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Conload&amp;id=I1_1349349216455&amp;parent=http%3A%2F%2Fwww.mkyong.com"></iframe>
+							</div> </span><span> <a data-show-screen-name="false"
+							data-show-count="true" class="twitter-follow-button"
+							href="https://twitter.com/mkyong">Follow @mkyong</a>
+						</span>
+					</div>
+					<div id="sidebar-signup">
+						<label>Get the latest in your inbox for free.</label>
+						<form target="_new"
+							action="http://emarketing.lakequincy.com/public/vs0wr6hx89/ZWA/subscribe"
+							name="subscribe" method="post">
+							<input type="text" value="" size="20"
+								name="person[email_address]" id="awf_field-32846329"
+								class="watermark"> <span><input type="submit"
+								value="Subscribe" name="submit" class="btn"></span>
+						</form>
+					</div>
+					<div class="sidebar-ads">
+						<script type="text/javascript">google_ad_client="ca-pub-2836379775501347";google_ad_slot="7072877400";google_ad_width=300;google_ad_height=250;google_ad_region="mkyongregion";</script>
+						<script
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js"
+							type="text/javascript"></script>
+					</div>
+					<div class="sidebar-ads">
+						<div lqm_tags="Java%2cAndroid%2cXML%2cHosting"
+							lqm_format="300x250" lqm_zone="RON" lqm_publisher="lqm.j2ee.site"
+							class="lqm_ad">
+							<iframe scrolling="no" width="300" height="250" frameborder="0"
+								marginheight="0" marginwidth="0" id="lqmad2"></iframe>
+						</div>
+					</div>
+					<div class="sidebar-ads">
+						<script type="text/javascript">google_ad_client="ca-pub-2836379775501347";google_ad_slot="5738517670";google_ad_width=300;google_ad_height=250;google_ad_region="mkyongregion";</script>
+						<script
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js"
+							type="text/javascript"></script>
+					</div>
+					<div class="sidebar-ads">
+						<div
+							lqm_tags="Java%2cAndroid%2cHosting%20MVC%2cdependency%20injection%2cDI%2cIOC%2cTDD"
+							lqm_format="160x600" lqm_zone="ron" lqm_publisher="lqm.j2ee.site"
+							class="lqm_ad">
+							<iframe scrolling="no" width="160" height="600" frameborder="0"
+								marginheight="0" marginwidth="0" id="lqmad3"></iframe>
+						</div>
+					</div>
+					<div style="margin-top: 40px">
+						<script type="text/javascript">google_ad_client="ca-pub-2836379775501347";google_ad_slot="9218922650";google_ad_width=160;google_ad_height=600;google_ad_region="mkyongregion";</script>
+						<script
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js"
+							type="text/javascript"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
