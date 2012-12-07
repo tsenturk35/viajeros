@@ -5,11 +5,15 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.viajeros.entity.AuditStamp;
 @Entity
 @Table(name = "invoice_detail")
 
@@ -41,10 +45,9 @@ public class InvoiceDetails {
 	@Column(name = "amount")
 	private Double amount;
 	
-//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinTable(name = "vehicle_type", joinColumns = 
-//			@JoinColumn(name = "invoice_id") , inverseJoinColumns = { @JoinColumn(name = "veichleTypeId") })
-//	private Set<VehicleType> vehicleTypes;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = VehicleType.class)
+	@JoinColumn(name = "vehicleTypeId", referencedColumnName = "vehicleTypeId", insertable = false, updatable = false)
+	private VehicleType vehicleType;
 	
 	@Embedded
 	private AuditStamp auditStamp;
