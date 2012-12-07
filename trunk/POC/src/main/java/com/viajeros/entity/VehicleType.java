@@ -27,7 +27,7 @@ public class VehicleType {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "vehicleType")
 	private Set<TransportationRate> transportationRates;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "client")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "vehicleType")
 	private Set<DetentionRate> detentionRates;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = InvoiceDetails.class, mappedBy = "vehicleType")
