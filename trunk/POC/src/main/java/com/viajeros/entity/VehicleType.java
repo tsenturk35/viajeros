@@ -17,7 +17,7 @@ public class VehicleType {
 	private String name;
 
 	@Column(name = "capacity")
-	private int capacity;
+	private Double capacity;
 
 	public Long getVehicleTypeId() {
 		return vehicleTypeId;
@@ -35,11 +35,11 @@ public class VehicleType {
 		this.name = name;
 	}
 
-	public int getCapacity() {
+	public Double getCapacity() {
 		return capacity;
 	}
-// ------- to chk data type-----------------------------------------------------
-	public void setCapacity(int capacity) {
+	
+	public void setCapacity(Double capacity) {
 		this.capacity = capacity;
 	}
 

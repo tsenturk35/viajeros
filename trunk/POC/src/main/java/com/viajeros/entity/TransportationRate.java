@@ -8,10 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.viajeros.entity.AuditStamp;
-
 @Entity
-@Table(name = "ordersheet")
+@Table(name = "trans_rate")
 public class TransportationRate {
 	
 	@Id

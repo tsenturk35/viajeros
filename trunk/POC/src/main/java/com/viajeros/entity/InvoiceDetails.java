@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.viajeros.entity.AuditStamp;
 
 @Entity
-@Table(name = "ordersheet")
+@Table(name = "invoice_detail")
 
 public class InvoiceDetails {
 
@@ -33,9 +33,9 @@ public class InvoiceDetails {
 	
 	@Column(name = "delivery_dt")
 	private Date deliveryDate;
-//	--------------------------------------------------- datat type to be chkd----------------------
+
 	@Column(name = "lr_no")
-	private int lrNumber;
+	private String lrNumber;
 	
 	@Column(name = "deten_days")
 	private int detentionDays;
@@ -86,11 +86,11 @@ public class InvoiceDetails {
 		this.deliveryDate = deliveryDate;
 	}
 
-	public int getLrNumber() {
+	public String getLrNumber() {
 		return lrNumber;
 	}
 
-	public void setLrNumber(int lrNumber) {
+	public void setLrNumber(String lrNumber) {
 		this.lrNumber = lrNumber;
 	}
 
