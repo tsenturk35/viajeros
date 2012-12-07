@@ -29,6 +29,9 @@ public class VehicleType {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "client")
 	private Set<DetentionRate> detentionRates;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = InvoiceDetails.class, mappedBy = "vehicleType")
+	private Set<InvoiceDetails> invoiceDetails;
 
 	public Long getVehicleTypeId() {
 		return vehicleTypeId;
