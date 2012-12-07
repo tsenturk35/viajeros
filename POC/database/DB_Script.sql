@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `viajeros`.`vehicle_type` ;
 CREATE  TABLE IF NOT EXISTS `viajeros`.`vehicle_type` (
   `vehicle_type_id` INT NOT NULL ,
   `name` VARCHAR(45) NULL ,
-  `capacity` INT NULL ,
+  `capacity` DOUBLE NULL ,
   PRIMARY KEY (`vehicle_type_id`) )
 ENGINE = InnoDB;
 
