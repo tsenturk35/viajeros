@@ -1,4 +1,4 @@
-package com.entity;
+package com.viajeros.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -8,44 +8,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.entity.AuditStamp;
+import com.viajeros.entity.AuditStamp;
 
 @Entity
-@Table(name = "deten_rate")
-public class DetentionRate {
-
+@Table(name = "ordersheet")
+public class TransportationRate {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "deten_rate_id")
-	private Long detentionRateId;
+	@Column(name = "trans_rate_id")
+	private Long transportationRateId;
 
 	@Column(name = "src_id")
-	private Long sourceId;
-
+	private Long sourceId;	
+	
 	@Column(name = "dest_id")
 	private Long destinationId;
-
+	
 	@Column(name = "client_id")
 	private Long clientId;
-
+	
 	@Column(name = "vehicle_typ_id")
 	private Long vehicleTypeId;
-
+	
 	@Column(name = "amount")
 	private Double amount;
-
-	@Column(name = "deten_days")
-	private int detentionDays;
-
+	
 	@Embedded
 	private AuditStamp auditStamp;
 
-	public Long getDetentionRateId() {
-		return detentionRateId;
+	public Long getTransportationRateId() {
+		return transportationRateId;
 	}
 
-	public void setDetentionRateId(Long detentionRateId) {
-		this.detentionRateId = detentionRateId;
+	public void setTransportationRateId(Long transportationRateId) {
+		this.transportationRateId = transportationRateId;
 	}
 
 	public Long getSourceId() {
@@ -88,14 +85,6 @@ public class DetentionRate {
 		this.amount = amount;
 	}
 
-	public int getDetentionDays() {
-		return detentionDays;
-	}
-
-	public void setDetentionDays(int detentionDays) {
-		this.detentionDays = detentionDays;
-	}
-
 	public AuditStamp getAuditStamp() {
 		return auditStamp;
 	}
@@ -108,8 +97,10 @@ public class DetentionRate {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((detentionRateId == null) ? 0 : detentionRateId.hashCode());
+		result = prime
+				* result
+				+ ((transportationRateId == null) ? 0 : transportationRateId
+						.hashCode());
 		return result;
 	}
 
@@ -121,13 +112,14 @@ public class DetentionRate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DetentionRate other = (DetentionRate) obj;
-		if (detentionRateId == null) {
-			if (other.detentionRateId != null)
+		TransportationRate other = (TransportationRate) obj;
+		if (transportationRateId == null) {
+			if (other.transportationRateId != null)
 				return false;
-		} else if (!detentionRateId.equals(other.detentionRateId))
+		} else if (!transportationRateId.equals(other.transportationRateId))
 			return false;
 		return true;
 	}
-
+	
+	
 }

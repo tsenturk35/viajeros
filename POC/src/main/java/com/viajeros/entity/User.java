@@ -1,4 +1,4 @@
-package com.entity;
+package com.viajeros.entity;
 
 import java.util.Date;
 

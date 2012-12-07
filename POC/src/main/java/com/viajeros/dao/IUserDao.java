@@ -1,6 +1,6 @@
-package com.dao;
+package com.viajeros.dao;
 
-import com.entity.User;
+import com.viajeros.entity.User;
 
 
 

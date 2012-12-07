@@ -1,4 +1,4 @@
-package com.entity;
+package com.viajeros.entity;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.entity.AuditStamp;
+import com.viajeros.entity.AuditStamp;
 
 @Entity
 @Table(name = "ordersheet")

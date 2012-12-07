@@ -1,11 +1,12 @@
-package com.dao;
+package com.viajeros.dao;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
-import com.entity.User;
+
+import com.viajeros.entity.User;
 
 
 
