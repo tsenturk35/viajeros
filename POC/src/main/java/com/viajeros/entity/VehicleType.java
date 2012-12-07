@@ -1,8 +1,13 @@
 package com.viajeros.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +23,12 @@ public class VehicleType {
 
 	@Column(name = "capacity")
 	private Double capacity;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "vehicleType")
+	private Set<TransportationRate> transportationRates;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "client")
+	private Set<DetentionRate> detentionRates;
 
 	public Long getVehicleTypeId() {
 		return vehicleTypeId;
@@ -41,6 +52,22 @@ public class VehicleType {
 	
 	public void setCapacity(Double capacity) {
 		this.capacity = capacity;
+	}
+
+	public Set<TransportationRate> getTransportationRates() {
+		return transportationRates;
+	}
+
+	public void setTransportationRates(Set<TransportationRate> transportationRates) {
+		this.transportationRates = transportationRates;
+	}
+
+	public Set<DetentionRate> getDetentionRates() {
+		return detentionRates;
+	}
+
+	public void setDetentionRates(Set<DetentionRate> detentionRates) {
+		this.detentionRates = detentionRates;
 	}
 
 	@Override

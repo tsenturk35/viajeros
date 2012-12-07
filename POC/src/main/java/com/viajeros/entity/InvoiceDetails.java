@@ -1,15 +1,22 @@
 package com.viajeros.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.invento.database.ProductionCycles;
 import com.viajeros.entity.AuditStamp;
 
 @Entity
@@ -42,6 +49,11 @@ public class InvoiceDetails {
 	
 	@Column(name = "amount")
 	private Double amount;
+	
+//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinTable(name = "vehicle_type", joinColumns = 
+//			@JoinColumn(name = "invoice_id") , inverseJoinColumns = { @JoinColumn(name = "veichleTypeId") })
+//	private Set<VehicleType> vehicleTypes;
 	
 	@Embedded
 	private AuditStamp auditStamp;

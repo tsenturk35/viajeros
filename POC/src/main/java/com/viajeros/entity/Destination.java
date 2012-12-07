@@ -1,11 +1,18 @@
 package com.viajeros.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "destn")
@@ -24,14 +31,14 @@ public class Destination {
 
 	@Column(name = "long")
 	private Double longitude;
+	
 
-	public Long getDestination_id() {
-		return destinationId;
-	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "destination")
+	private Set<TransportationRate> transportationRates;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "destination")
+	private Set<DetentionRate> detentionRates;
 
-	public void setDestination_id(Long destinationId) {
-		this.destinationId = destinationId;
-	}
 
 	public String getDescription() {
 		return description;
@@ -41,20 +48,44 @@ public class Destination {
 		this.description = description;
 	}
 
-	public double getLatitude() {
+	public Long getDestinationId() {
+		return destinationId;
+	}
+
+	public void setDestinationId(Long destinationId) {
+		this.destinationId = destinationId;
+	}
+
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public Set<TransportationRate> getTransportationRates() {
+		return transportationRates;
+	}
+
+	public void setTransportationRates(Set<TransportationRate> transportationRates) {
+		this.transportationRates = transportationRates;
+	}
+
+	public Set<DetentionRate> getDetentionRates() {
+		return detentionRates;
+	}
+
+	public void setDetentionRates(Set<DetentionRate> detentionRates) {
+		this.detentionRates = detentionRates;
 	}
 
 	@Override

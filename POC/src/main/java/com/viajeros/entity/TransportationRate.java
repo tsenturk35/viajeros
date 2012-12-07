@@ -1,12 +1,18 @@
 package com.viajeros.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "trans_rate")
@@ -31,6 +37,20 @@ public class TransportationRate {
 	
 	@Column(name = "amount")
 	private Double amount;
+	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Destination.class)
+	@JoinColumn(name = "dest_id", referencedColumnName = "dest_id", insertable = false, updatable = false)
+	private Destination destination;
+	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Client.class)
+	@JoinColumn(name = "clientId", referencedColumnName = "clientId", insertable = false, updatable = false)
+	private Client client;
+	
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = VehicleType.class)
+	@JoinColumn(name = "vehicleTypeId", referencedColumnName = "vehicleTypeId", insertable = false, updatable = false)
+	private VehicleType vehicleType;
+	
+	
 	
 	@Embedded
 	private AuditStamp auditStamp;
@@ -87,8 +107,32 @@ public class TransportationRate {
 		return auditStamp;
 	}
 
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
 	public void setAuditStamp(AuditStamp auditStamp) {
 		this.auditStamp = auditStamp;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(VehicleType vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 
 	@Override
