@@ -12,6 +12,10 @@ import com.viajeros.entity.User;
 
 public class UserDaoImpl extends AbstractDaoImpl implements IUserDao {
 
+	public UserDaoImpl(SessionFactory sessionFactory) {
+		super(sessionFactory);
+	}
+
 	private SessionFactory sessionFactory;
 	
 
