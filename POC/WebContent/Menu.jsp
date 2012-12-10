@@ -6,24 +6,26 @@
 		<ul>
 		
 			<li class="menu-allround"><a href="/">Home</a></li>
-			<li class="menu-allround"><a href="Report">Reports</a></li>
-			<li class="menu-topround"><a href="#">Test Service</a>
+			<li class="menu-allround"><a href="#">Invoice</a></li>
+			<li class="menu-topround"><a href="#">Administration</a>
 				
 				<div class="dropdown" id="java-menu">
-					<div class="tut-title">Test Following Services</div>
+					<div class="tut-title">Administration</div>
 					<div class="dropdown-item">
-						<a href="/tag/java/"><div class="images img-border img-java img-holder"></div> </a>
-						<div>1. <s:a action="getTags" >Users By Tag</s:a></div>
-						<div></div>
-						<div>2. <a href="#">FBEntities by Tags</a></div>
-						<div></div>
-						<div>3. <a href="#">Tags By Tag</a></div>
+						<a href="#"><div class="images img-border img-java img-holder"></div> </a>
 						
-
+						<div>1. <a href="#">Transportation Rates </a></div>
+						<div></div>
+						<div>2. <a href="#">Holding Rates</a></div>
+						<div></div>
+						<div>3. <a href="#">Vehicle Types</a></div>
+						<div></div>
+						<div>3. <a href="#">Destinations</a></div>
+d
 					</div>
 				</div>
 			</li>
-			<li class="menu-allround"><a href="Services.do">Services Setting</a></li>
+			<li class="menu-allround"><a href="#">My Profile</a></li>
 		</ul>
 	</div>
 </div>

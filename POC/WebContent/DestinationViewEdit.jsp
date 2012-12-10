@@ -30,7 +30,7 @@
 			<div class="span10">
 				<div id="post-container">
 					<div id="post-6272" class="post">
-						<h2>Test Tags by Tag</h2>
+						<h2>Test Facebook Entities by Tag</h2>
 						<div id="post-meta"> 
 							<span id="post-meta-author"> By <a href="#" rel="author">info</a> - June 8, 2010 </span> 
 							<span class="post-tag"><a href="#" rel="tag">service link</a></span>
