@@ -18,9 +18,9 @@
 		<property name="hibernate.c3p0.idle_test_periods">3000</property>
 
 
-		<mapping package="com.tookitaki.testserver.entity" />
+		<!-- <mapping package="com.tookitaki.testserver.entity" />
 		<mapping class="com.tookitaki.testserver.entity.Report" />
-		<mapping class="com.tookitaki.testserver.entity.Service" />
+		<mapping class="com.tookitaki.testserver.entity.Service" /> -->
 		
 		
 		
