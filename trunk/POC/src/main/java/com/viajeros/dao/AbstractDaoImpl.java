@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+import com.viajeros.entity.TransportationRate;
+
 public class AbstractDaoImpl {
 
 	private final SessionFactory sessionFactory;
@@ -116,5 +118,6 @@ public class AbstractDaoImpl {
 			session.close();
 		}
 	}
+
 
 }

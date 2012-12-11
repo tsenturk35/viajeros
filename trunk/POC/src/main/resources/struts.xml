@@ -3,15 +3,20 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
-	
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+
 	<package name="default" extends="struts-default">
-		
+
 		<action name="manageRateAction" method="execute" class="manageRateAction">
 			<result name="success" type="redirect">RateList.jsp</result>
 		</action>
-		
-		
-		
+		<action name="addTransportationRates" method="add"
+			class="com.viajeros.action.administration.ManageTransportationRateAction">
+			<result name="success" type="redirect">getTransportationRateList</result>
+		</action>
+		<action name="getTransportationRateList" method="list" class="com.viajeros.action.administration.ManageTransportationRateAction">
+			<result name="success">/TransportationRateList.jsp</result>
+		</action>
 	</package>
 </struts>
