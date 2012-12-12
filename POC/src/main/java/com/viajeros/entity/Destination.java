@@ -9,10 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+@NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select sourceId from Destination destination asc ") })
 
 @Entity
 @Table(name = "destn")
