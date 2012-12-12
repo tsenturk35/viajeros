@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select sourceId from Destination destination asc ") })
+@NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select destinationId from Destination destination order by destinationId asc ") })
 
 @Entity
 @Table(name = "destn")
