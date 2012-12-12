@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `viajeros`.`trans_rate` ;
 CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
   `trans_rate_id` INT NOT NULL AUTO_INCREMENT ,
   `src_id` INT NULL ,
-  `dest_id` INT NULL ,
+  `destn_id` INT NULL ,
   `client_id` INT NULL ,
   `vehicle_typ_id` INT NULL DEFAULT 0 ,
   `amount` DOUBLE NULL DEFAULT 0 ,
@@ -64,7 +64,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
   `created_by` VARCHAR(45) NULL ,
   PRIMARY KEY (`trans_rate_id`) ,
   INDEX `fk_trans_rate_src` (`src_id` ASC) ,
-  INDEX `fk_trans_rate_dest` (`dest_id` ASC) ,
+  INDEX `fk_trans_rate_dest` (`destn_id` ASC) ,
   INDEX `fk_trans_rate_clientid` (`client_id` ASC) ,
   INDEX `fk_trans_rate_vtypid` (`vehicle_typ_id` ASC) ,
   CONSTRAINT `fk_trans_rate_src`
@@ -73,7 +73,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trans_rate_dest`
-    FOREIGN KEY (`dest_id` )
+    FOREIGN KEY (`destn_id` )
     REFERENCES `viajeros`.`destn` (`destn_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `viajeros`.`deten_rate` ;
 CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
   `deten_rate_id` INT NOT NULL AUTO_INCREMENT ,
   `src_id` INT NULL ,
-  `dest_id` INT NULL ,
+  `destn_id` INT NULL ,
   `client_id` INT NULL ,
   `vehicle_typ_id` INT NULL DEFAULT 0 ,
   `amount` DOUBLE NULL DEFAULT 0 ,
@@ -109,7 +109,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
   `created_by` VARCHAR(45) NULL ,
   PRIMARY KEY (`deten_rate_id`) ,
   INDEX `fk_trans_rate_src` (`src_id` ASC) ,
-  INDEX `fk_trans_rate_dest` (`dest_id` ASC) ,
+  INDEX `fk_trans_rate_dest` (`destn_id` ASC) ,
   INDEX `fk_detn_rate_clientid` (`client_id` ASC) ,
   INDEX `fk_detn_rate_vtypid` (`vehicle_typ_id` ASC) ,
   CONSTRAINT `fk_dest_rate_src`
@@ -118,7 +118,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_dest_rate_dest`
-    FOREIGN KEY (`dest_id` )
+    FOREIGN KEY (`destn_id` )
     REFERENCES `viajeros`.`destn` (`destn_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.ITransportationRateDao;
+import com.viajeros.dao.TransportationRatesDaoImpl;
 import com.viajeros.entity.TransportationRate;
 
 public class ManageTransportationRateAction extends ActionSupport implements
@@ -20,7 +21,7 @@ public class ManageTransportationRateAction extends ActionSupport implements
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
 	
 	@Autowired
-	private ITransportationRateDao transportationRatesDao;
+	private ITransportationRateDao transportationRatesDao = new TransportationRatesDaoImpl();
 
 	@Override
 	public TransportationRate getModel() {
@@ -55,14 +56,14 @@ public class ManageTransportationRateAction extends ActionSupport implements
 		this.transportationRateList = aTransportationRateList;
 	}
 
-	public ITransportationRateDao getTransportationRatesDao() {
-		return transportationRatesDao;
-	}
-
-	public void setTransportationRatesDao(
-			ITransportationRateDao transportationRatesDao) {
-		this.transportationRatesDao = transportationRatesDao;
-	}
+//	public ITransportationRateDao getTransportationRatesDao() {
+//		return transportationRatesDao;
+//	}
+//
+//	public void setTransportationRatesDao(
+//			ITransportationRateDao transportationRatesDao) {
+//		this.transportationRatesDao = transportationRatesDao;
+//	}
 	
 	
 	

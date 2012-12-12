@@ -46,7 +46,7 @@ public class InvoiceDetails {
 	private Double amount;
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = VehicleType.class)
-	@JoinColumn(name = "vehicleTypeId", referencedColumnName = "vehicleTypeId", insertable = false, updatable = false)
+	@JoinColumn(name = "vehicle_type_id", referencedColumnName = "vehicle_type_id", insertable = false, updatable = false)
 	private VehicleType vehicleType;
 	
 	@Embedded
