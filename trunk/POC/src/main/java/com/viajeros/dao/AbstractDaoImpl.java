@@ -25,7 +25,7 @@ public abstract class AbstractDaoImpl {
 			return entities;
 		for (Object entity : entities)
 			getSession().saveOrUpdate(entity);
-				return entities;
+		return entities;
 	}
 
 	public void deleteEntity(Object entity) {

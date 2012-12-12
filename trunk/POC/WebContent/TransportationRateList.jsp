@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<s:if test="userList.size() > 0">
+<s:if test="transportationRateList.size() > 0">
 <div class="content">
 <table class="userTable" cellpadding="5px">
 <tr class="even">
@@ -18,7 +18,7 @@
 <th>vehicle_typ_id</th>
 <th>amount</th>
 </tr>
-<s:iterator value="userList" status="userStatus">
+<s:iterator value="transportationRateList" status="userStatus">
 <tr>
 <td><s:property value="sourceId" /></td>
 <td><s:property value="destinationId" /></td>
