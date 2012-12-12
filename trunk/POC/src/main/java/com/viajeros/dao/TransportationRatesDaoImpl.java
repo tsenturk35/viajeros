@@ -4,31 +4,36 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.viajeros.entity.TransportationRate;
 
+@Repository
 public class TransportationRatesDaoImpl extends AbstractDaoImpl implements ITransportationRateDao {
-
-
-	public TransportationRatesDaoImpl(SessionFactory sessionFactory) {
-		super(sessionFactory);
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	@Override
+	public void updateTransportationRate(TransportationRate transportationRate) {
+		updateEntity(transportationRate);
 	}
 
 	@Override
-	public void updateTransportationRate(TransportationRate transportationRate) {
-			Session session = getSession();
-			session.save(transportationRate);
-		
-	}
-
 	public List<TransportationRate> getAllTransportationRates() {
-		Session session = getSession();
-		Query query = session
+		Query query = getSession()
 				.createQuery("from TransportationRate order by trans_rate_id asc");
-		List result = query.list();
-		session.close();
-		return result;
+		return query.list();
+		
 	}
 
 }

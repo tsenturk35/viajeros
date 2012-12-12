@@ -1,122 +1,44 @@
 package com.viajeros.dao;
 
-import java.util.List;
-import java.util.Set;
-import org.hibernate.HibernateException;
+import java.util.Collection;
+
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
-import com.viajeros.entity.TransportationRate;
+public abstract class AbstractDaoImpl {
 
-public class AbstractDaoImpl {
-
-	private final SessionFactory sessionFactory;
-
-	public AbstractDaoImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+	public abstract SessionFactory getSessionFactory();
 
 	public Session getSession() {
-		return getSessionFactory().openSession();
+		if (getSessionFactory().getCurrentSession() == null)
+			throw new IllegalStateException("No Session has not been set before usage");
+		return getSessionFactory().getCurrentSession();
 	}
 
 	public Object updateEntity(Object entity) {
-		Session session = getSession();
-		Transaction transaction = session.beginTransaction();
-		transaction.begin();
-		try {
-			session.saveOrUpdate(entity);
-			transaction.commit();
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			transaction.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		getSession().saveOrUpdate(entity);
 		return entity;
 	}
 
-	public List<?> updateEntities(List<?> entities) {
+	public Collection<?> updateEntities(Collection<?> entities) {
 		if (entities.size() == 0)
 			return entities;
-		Session session = getSession();
-		Transaction transaction = session.beginTransaction();
-		transaction.begin();
-		try {
-			for (Object entity : entities)
-				session.saveOrUpdate(entity);
-			transaction.commit();
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			transaction.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
-		return entities;
-	}
-
-	public void updateEntities(Set<?> entities) {
-		if (entities.size() == 0)
-			return;
-		Session session = getSession();
-		Transaction transaction = session.beginTransaction();
-		transaction.begin();
-		try {
-			for (Object entity : entities)
-				session.saveOrUpdate(entity);
-			transaction.commit();
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			transaction.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		for (Object entity : entities)
+			getSession().saveOrUpdate(entity);
+				return entities;
 	}
 
 	public void deleteEntity(Object entity) {
-		Session session = getSession();
-		Transaction transaction = session.beginTransaction();
-		transaction.begin();
-		try {
-			session.delete(entity);
-			transaction.commit();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			transaction.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		getSession().delete(entity);;
 	}
 
-	public void deleteEntities(List<?> entities) {
+	public void deleteEntities(Collection<?> entities) {
 		if (entities.size() < 1)
 			return;
-		Session session = getSession();
-		Transaction transaction = session.beginTransaction();
-		transaction.begin();
-		try {
-			for (Object entity : entities)
-				session.delete(entity);
-			transaction.commit();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			transaction.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+
+		for (Object entity : entities)
+			getSession().delete(entity);
+				
 	}
 
 

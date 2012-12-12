@@ -5,20 +5,19 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.viajeros.entity.User;
 
 
-
+@Repository
 public class UserDaoImpl extends AbstractDaoImpl implements IUserDao {
 
-	public UserDaoImpl(SessionFactory sessionFactory) {
-		super(sessionFactory);
-	}
-
+	@Autowired
 	private SessionFactory sessionFactory;
-	
 
+	@Override
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -26,7 +25,8 @@ public class UserDaoImpl extends AbstractDaoImpl implements IUserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-    public User getUserById(String userId) {
+    @Override
+	public User getUserById(String userId) {
             Session session = getSession();
             Query query = session.getNamedQuery("User.findUserByUserIdAndPassword");
             query.setString("userId", userId);
