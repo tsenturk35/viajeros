@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
 
 @Repository
@@ -31,7 +32,14 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements ITran
 	@Override
 	public List<TransportationRate> getAllTransportationRates() {
 		Query query = getSession()
-				.createQuery("from TransportationRate order by trans_rate_id asc");
+				.createQuery("from TransportationRate order by transportationRateId asc");
+		return query.list();
+		
+	}
+
+	public List<Destination> getAllSourceId() {
+		Query query = getSession()
+				.getNamedQuery("Destination.getAllSourceId");
 		return query.list();
 		
 	}

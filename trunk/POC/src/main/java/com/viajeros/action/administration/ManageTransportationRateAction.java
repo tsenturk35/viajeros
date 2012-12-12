@@ -10,7 +10,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.ITransportationRateDao;
 import com.viajeros.dao.TransportationRatesDaoImpl;
+import com.viajeros.entity.Client;
+import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
+import com.viajeros.entity.VehicleType;
 
 public class ManageTransportationRateAction extends ActionSupport implements
 		ModelDriven<TransportationRate> {
@@ -19,6 +22,10 @@ public class ManageTransportationRateAction extends ActionSupport implements
 
 	private TransportationRate transportationRate = new TransportationRate();
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
+	private List<Destination> sourceIdList = new ArrayList<Destination>();
+	private List<Destination> destinationIdList = new ArrayList<Destination>();
+	private List<Client> clientIdList = new ArrayList<Client>();
+	private List<VehicleType> vehicletypeIdList = new ArrayList<VehicleType>();
 	
 	@Autowired
 	private ITransportationRateDao transportationRatesDao = new TransportationRatesDaoImpl();
@@ -37,6 +44,11 @@ public class ManageTransportationRateAction extends ActionSupport implements
 	@Transactional(readOnly=true)
 	public String list() {
 		transportationRateList = transportationRatesDao.getAllTransportationRates();
+		return SUCCESS;
+	}
+	@Transactional(readOnly=true)
+	public String sourceIdList() {
+		sourceIdList = transportationRatesDao.getAllSourceId();
 		return SUCCESS;
 	}
 
