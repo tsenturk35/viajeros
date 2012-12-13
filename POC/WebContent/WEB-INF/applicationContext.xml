@@ -16,21 +16,26 @@
    		  http://www.springframework.org/schema/tx 
 		  http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 		  
-  <import resource="classpath:hibernate-config.xml"/>
+  		<import resource="classpath:hibernate-config.xml"/>
+  		<context:annotation-config />
 
-  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction">
-        </bean>
-        
-        
-        <!-- Setting for transaction Annotation 
-        see http://blog.springsource.org/2007/05/14/annotation-driven-dependency-injection-in-spring-21/
-        -->
-       
          <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
          	<property name="sessionFactory" ref="sessionFactory" />
 		 </bean>
          
 		 <tx:annotation-driven transaction-manager="transactionManager" />
-		 <context:component-scan base-package="com.viajeros" />
+		 <!-- <context:component-scan base-package="com.viajeros.action" /> -->
+		 
+		 <!-- Action Class beans -->
+  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction"/>
+   
+        
+        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction"/>
+        
+        
+        <!-- Dao Class beans -->
+        <bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
+        <bean id="transportDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
+        
 
 </beans>

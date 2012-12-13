@@ -11,11 +11,19 @@
 		<action name="manageRateAction" method="execute" class="manageRateAction">
 			<result name="success" type="redirect">RateList.jsp</result>
 		</action>
+		
 		<action name="addTransportationRates" method="add" class="manageRateAction">
 			<result name="success" type="redirect">getTransportationRateList</result>
 		</action>
 		<action name="getTransportationRateList" method="list" class="manageRateAction">
-			<result name="success">/TransportationRateList.jsp</result>
+			<result name="success">TransportationRateList.jsp</result>
 		</action>
+		
+		<action name="destinationList" method="execute" class="manageDestinationAction">
+			<result name="success">DestinationList.jsp</result>
+		</action>
+		
+		
+		
 	</package>
 </struts>

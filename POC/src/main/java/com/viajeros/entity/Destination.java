@@ -1,17 +1,12 @@
 package com.viajeros.entity;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select destinationId from Destination destination order by destinationId asc ") })
@@ -35,11 +30,11 @@ public class Destination {
 	private Double longitude;
 	
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "destination")
-	private Set<TransportationRate> transportationRates;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "destination")
-	private Set<DetentionRate> detentionRates;
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "destination")
+//	private Set<TransportationRate> transportationRates;
+//	
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "destination")
+//	private Set<DetentionRate> detentionRates;
 
 
 	public String getDescription() {
@@ -74,21 +69,21 @@ public class Destination {
 		this.longitude = longitude;
 	}
 
-	public Set<TransportationRate> getTransportationRates() {
-		return transportationRates;
-	}
-
-	public void setTransportationRates(Set<TransportationRate> transportationRates) {
-		this.transportationRates = transportationRates;
-	}
-
-	public Set<DetentionRate> getDetentionRates() {
-		return detentionRates;
-	}
-
-	public void setDetentionRates(Set<DetentionRate> detentionRates) {
-		this.detentionRates = detentionRates;
-	}
+//	public Set<TransportationRate> getTransportationRates() {
+//		return transportationRates;
+//	}
+//
+//	public void setTransportationRates(Set<TransportationRate> transportationRates) {
+//		this.transportationRates = transportationRates;
+//	}
+//
+//	public Set<DetentionRate> getDetentionRates() {
+//		return detentionRates;
+//	}
+//
+//	public void setDetentionRates(Set<DetentionRate> detentionRates) {
+//		this.detentionRates = detentionRates;
+//	}
 
 	@Override
 	public int hashCode() {
