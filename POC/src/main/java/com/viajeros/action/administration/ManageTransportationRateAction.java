@@ -23,12 +23,12 @@ public class ManageTransportationRateAction extends ActionSupport implements
 	private TransportationRate transportationRate = new TransportationRate();
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
 	private List<Destination> sourceIdList = new ArrayList<Destination>();
-	private List<Destination> destinationIdList = new ArrayList<Destination>();
-	private List<Client> clientIdList = new ArrayList<Client>();
-	private List<VehicleType> vehicletypeIdList = new ArrayList<VehicleType>();
+	private final List<Destination> destinationIdList = new ArrayList<Destination>();
+	private final List<Client> clientIdList = new ArrayList<Client>();
+	private final List<VehicleType> vehicletypeIdList = new ArrayList<VehicleType>();
 	
 	@Autowired
-	private ITransportationRateDao transportationRatesDao = new TransportationRatesDaoImpl();
+	private final ITransportationRateDao transportationRatesDao = new TransportationRatesDaoImpl();
 
 	@Override
 	public TransportationRate getModel() {
