@@ -18,7 +18,7 @@
 						<div></div>
 						<div>3. <a href="#">Vehicle Types</a></div>
 						<div></div>
-						<div>3. <a href="#">Destinations</a></div>
+						<div>3. <s:a action="destinationList" >Destinations</s:a></div>
 					</div>
 				</div>
 			</li>

@@ -1,7 +1,6 @@
 package com.viajeros.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -51,8 +50,8 @@ public class TransportationRate {
 	
 	
 	
-	@Embedded
-	private AuditStamp auditStamp;
+//	@Embedded
+//	private AuditStamp auditStamp;
 
 	public Long getTransportationRateId() {
 		return transportationRateId;
@@ -102,9 +101,9 @@ public class TransportationRate {
 		this.amount = amount;
 	}
 
-	public AuditStamp getAuditStamp() {
-		return auditStamp;
-	}
+//	public AuditStamp getAuditStamp() {
+//		return auditStamp;
+//	}
 
 	public Destination getDestination() {
 		return destination;
@@ -114,9 +113,9 @@ public class TransportationRate {
 		this.destination = destination;
 	}
 
-	public void setAuditStamp(AuditStamp auditStamp) {
-		this.auditStamp = auditStamp;
-	}
+//	public void setAuditStamp(AuditStamp auditStamp) {
+//		this.auditStamp = auditStamp;
+//	}
 
 	public Client getClient() {
 		return client;

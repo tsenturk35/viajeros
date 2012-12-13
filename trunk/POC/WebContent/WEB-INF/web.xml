@@ -5,10 +5,10 @@
     <welcome-file>Index.jsp</welcome-file>
   </welcome-file-list>
   
- 	<context-param>
+ 	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
-	</context-param>
+	</context-param> -->
   
   <listener>
       <listener-class>

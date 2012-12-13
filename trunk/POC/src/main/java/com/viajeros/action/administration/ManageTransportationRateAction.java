@@ -18,10 +18,16 @@ import com.viajeros.entity.VehicleType;
 public class ManageTransportationRateAction extends ActionSupport implements
 		ModelDriven<TransportationRate> {
 
+	
+	
+	private ManageTransportationRateAction() {
+		super();
+	}
+
 	private static final long serialVersionUID = -6659925652584240539L;
 
 	private TransportationRate transportationRate = new TransportationRate();
-	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
+	private List<TransportationRate> transportationRateList;
 	private List<Destination> sourceIdList = new ArrayList<Destination>();
 	private final List<Destination> destinationIdList = new ArrayList<Destination>();
 	private final List<Client> clientIdList = new ArrayList<Client>();
@@ -46,6 +52,7 @@ public class ManageTransportationRateAction extends ActionSupport implements
 		transportationRateList = transportationRatesDao.getAllTransportationRates();
 		return SUCCESS;
 	}
+	
 	@Transactional(readOnly=true)
 	public String sourceIdList() {
 		sourceIdList = transportationRatesDao.getAllSourceId();
