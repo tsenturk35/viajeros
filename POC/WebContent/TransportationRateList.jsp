@@ -5,19 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Transportation Rate Details</title>
+<jsp:include page="HeadContent.jsp" />
 </head>
 <body>
-	
-		<div class="content">
-			<table class="userTable" cellpadding="5px">
-				<tr class="even">
-					<th>src_id</th>
-					<th>dest_id</th>
-					<th>client_id</th>
-					<th>vehicle_typ_id</th>
-					<th>amount</th>
-				</tr>
+<jsp:include page="Header.jsp" />
+	<jsp:include page="Menu.jsp" />
+
+	<div class="content">
+		<table class="userTable" cellpadding="5px">
+			<tr class="even">
+				<th>src_id</th>
+				<th>dest_id</th>
+				<th>client_id</th>
+				<th>vehicle_typ_id</th>
+				<th>amount</th>
+			</tr>
 			<s:if test="transportationRateList.size() > 0">
 				<s:iterator value="transportationRateList" status="userStatus">
 					<tr>
@@ -26,11 +29,18 @@
 						<td><s:property value="clientId" /></td>
 						<td><s:property value="VehicleTypeId" /></td>
 						<td><s:property value="amount" /></td>
+						<td><s:url id="editURL" action="editUser">
+								<s:param name="id" value="%{id}"></s:param>
+							</s:url> <s:a href="%{editURL}">Edit</s:a></td>
+						<td><s:url id="deleteURL" action="deleteUser">
+								<s:param name="id" value="%{id}"></s:param>
+							</s:url> <s:a href="%{deleteURL}">Delete</s:a></td>
 					</tr>
 				</s:iterator>
 			</s:if>
 		</table>
-		</div>
-	
+	</div>
+
+<jsp:include page="Footer.jsp" />
 </body>
 </html>

@@ -34,7 +34,6 @@ public abstract class AbstractDaoIntegrationTest extends TestCase{
 
 	protected SessionFactory getSessionFactory() {
 		return sessionFactory;
-		
 	}
 	
 	
