@@ -11,19 +11,37 @@
 		<action name="manageRateAction" method="execute" class="manageRateAction">
 			<result name="success" type="redirect">RateList.jsp</result>
 		</action>
-		
+
+
+		<action name="addTransportationRates" method="add"
+			class="manageTransportationRateAction">
+		</action>
+
 		<action name="addTransportationRates" method="add" class="manageRateAction">
 			<result name="success" type="redirect">getTransportationRateList</result>
 		</action>
-		<action name="getTransportationRateList" method="list" class="manageRateAction">
+
+		<action name="getTransportationRateList" method="list"
+			class="manageTransportationRateAction">
 			<result name="success">TransportationRateList.jsp</result>
 		</action>
-		
+
+
+		<action name="editUser" method="edit" class="manageTransportationRateAction">
+			<result name="success">/TransportationViewEdit.jsp</result>
+		</action>
+
+		<action name="deleteUser" method="delete"
+			class="manageTransportationRateAction">
+			<result name="success" type="redirect">getTransportationRateList</result>
+		</action>
+
+
+
 		<action name="destinationList" method="execute" class="manageDestinationAction">
 			<result name="success">DestinationList.jsp</result>
 		</action>
-		
-		
-		
+
 	</package>
+
 </struts>
