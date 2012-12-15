@@ -30,10 +30,9 @@
 					<s:iterator value="destinationList">
 						
 						<s:property value="destinationId"/> - 
-						<s:property value="desc"/>
+						<s:property value="description"/>
 						<br/>
 					</s:iterator>
-					<s:bean name="test"/> -
 					
 					
 					</div>

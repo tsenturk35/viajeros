@@ -23,16 +23,15 @@
          	<property name="sessionFactory" ref="sessionFactory" />
 		 </bean>
          
-		 <tx:annotation-driven transaction-manager="transactionManager" />
+		 <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
 		 <!-- <context:component-scan base-package="com.viajeros.action" /> -->
 		 
 		 <!-- Action Class beans -->
-  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction"/>
-   <bean id="manageTranportationRateAction"
-		class="com.viajeros.action.administration.ManageTransportationRateAction" />
-   
-        
-        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction"/>
+  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction" scope="request"/>
+   		<bean id="manageTransportationRateAction"
+		class="com.viajeros.action.administration.ManageTransportationRateAction" scope="request"/>
+		
+        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" scope="request"/>
         
         
         <!-- Dao Class beans -->
