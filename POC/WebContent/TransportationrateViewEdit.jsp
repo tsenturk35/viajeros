@@ -12,14 +12,18 @@
 	<jsp:include page="Header.jsp" />
 	<jsp:include page="Menu.jsp" />
 <s:form action="addTransportationRates">
-<s:select name="sourceId" list="{'1','2','3'}" headerKey=""
+<s:select name="sourceId" list="getSourceIdList headerKey=""
 headerValue="Source" label="Select a Source Id" />
 
-<s:select name="destinationId" list="{'1','2','3'}" headerKey=""
+<s:select name="destinationId" list= getDestinationIdList headerKey=""
 headerValue="destination" label="Select a destination Id" />
 
-<s:select name="clientId" list="{'1','2','3'}" headerKey=""
+<s:select name="clientId" list="getClientIdList headerKey=""
 headerValue="client" label="Select a client Id" />
+
+<s:select name="vehicleType" list= getVehicleTypeIdList headerKey=""
+headerValue="vehicleType" label="Select a Vehicle Id" />
+
 <s:textfield name="amount" label="Amount" />
 <s:submit />
 </s:form>
