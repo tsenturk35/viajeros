@@ -21,7 +21,7 @@ import com.viajeros.entity.VehicleType;
 public class ManageTransportationRateAction extends ActionSupport implements
 		ModelDriven<TransportationRate> {
 
-	private ManageTransportationRateAction() {
+	public ManageTransportationRateAction() {
 		super();
 	}
 

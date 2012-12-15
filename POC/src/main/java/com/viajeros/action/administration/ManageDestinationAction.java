@@ -20,11 +20,8 @@ public class ManageDestinationAction extends ActionSupport {
 
 	@Autowired
 	private IDestinationDao destinationDao;
-	
 	private ArrayList<Destination> destinationList;
-	private String test;
 	
-
 	public IDestinationDao getDestinationDao() {
 		return destinationDao;
 	}
@@ -33,11 +30,11 @@ public class ManageDestinationAction extends ActionSupport {
 		this.destinationDao = destinationDao;
 	}
 	
-	@Override
+
 	@Transactional(readOnly=true)
-	public String execute(){
+	public String list(){
 		destinationList = (ArrayList<Destination>) destinationDao.getDestinationList();
-		test="executed!!";
+		System.out.println("In list");
 		return SUCCESS;
 	}
 
@@ -48,18 +45,5 @@ public class ManageDestinationAction extends ActionSupport {
 	public void setDestinationList(ArrayList<Destination> destinationList) {
 		this.destinationList = destinationList;
 	}
-
-	public String getTest() {
-		return test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
-	}
-	
-	
-
-	
-	
 
 }
