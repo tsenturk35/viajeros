@@ -7,8 +7,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.viajeros.entity.Client;
 import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
+import com.viajeros.entity.VehicleType;
 
 @Repository
 public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
@@ -44,15 +46,34 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
 		return query.list();
 
 	}
+	
+	public List<Destination> getAlldestinationIdList() {
+		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
+		return query.list();
+	}
+	
+	public List<Client> getAllClientIdList() {
+		Query query = getSession().getNamedQuery("Client.getAllClientId");
+		return query.list();
+	}
+	
+	public List<VehicleType> getAllVehicleTypeIdList() {
+		Query query = getSession().getNamedQuery("VehicleType.getAllVehicleTypeId");
+		return query.list();
+	}
+	
+
 	@Override
 	public void deleteTransportationRate(long userId) {
 		try {
-			TransportationRate transportationRate = (TransportationRate) getSession().get(TransportationRate.class, userId);
+			TransportationRate transportationRate = (TransportationRate) getSession()
+					.get(TransportationRate.class, userId);
 			getSession().delete(transportationRate);
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
-		}
+	}
+
 	@Override
 	public TransportationRate listTransportationRatesById(long anId) {
 		TransportationRate transportationRate = null;

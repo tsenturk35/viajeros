@@ -22,6 +22,26 @@
 			<result name="success">/TransportationRateList.jsp</result>
 		</action>
 
+<action name="getSourceIdList" method="sourceIdList"
+			class="manageTransportationRateAction">
+			<result name="success">/TransportationViewEdit.jsp</result>
+		</action>
+		
+		<action name="getDestinationIdList" method="destinationIdList"
+			class="manageTransportationRateAction">
+			<result name="success">/TransportationViewEdit.jsp</result>
+		</action>
+		
+		<action name="getClientIdList" method="clientIdList"
+			class="manageTransportationRateAction">
+			<result name="success">/TransportationViewEdit.jsp</result>
+		</action>
+		
+	<action name="getVehicleTypeIdList" method="vehicleTypeIdList"
+			class="manageTransportationRateAction">
+			<result name="success">/TransportationViewEdit.jsp</result>
+		</action>
+
 
 		<action name="editUser" method="edit" class="manageTranportationRateAction">
 			<result name="success">/TransportationViewEdit.jsp</result>
