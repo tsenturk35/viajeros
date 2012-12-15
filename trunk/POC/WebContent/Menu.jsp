@@ -12,7 +12,7 @@
 					<div class="tut-title">Administration</div>
 					<div class="dropdown-item">
 						<a href="#"><div class="images img-border img-java img-holder"></div> </a>
-						<div>1.<s:action name="getTransportationRateList">Transportation Rates</s:action></div>
+						<div>1.<s:a action ="getTransportationRateList">Transportation Rates</s:a></div>
 						<div></div>
 						<div>2. <a href="#">Holding Rates</a></div>
 						<div></div>

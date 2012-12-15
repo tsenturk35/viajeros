@@ -28,6 +28,8 @@
 		 
 		 <!-- Action Class beans -->
   		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction"/>
+   <bean id="manageTranportationRateAction"
+		class="com.viajeros.action.administration.ManageTransportationRateAction" />
    
         
         <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction"/>
@@ -35,7 +37,7 @@
         
         <!-- Dao Class beans -->
         <bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
-        <bean id="transportDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
+        <bean id="transportationRatesDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
         
 
 </beans>
