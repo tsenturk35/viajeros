@@ -7,9 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@NamedQueries({ @NamedQuery(name = "VehicleType.getAllVehicleTypeId", query = "select vehicleTypeId from VehicleType vehicleType order by vehicleTypeId asc ") })
 @Entity
 @Table(name = "vehicle_type")
 public class VehicleType {
@@ -23,13 +26,13 @@ public class VehicleType {
 
 	@Column(name = "capacity")
 	private Double capacity;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "vehicleType")
 	private Set<TransportationRate> transportationRates;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "vehicleType")
 	private Set<DetentionRate> detentionRates;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = InvoiceDetails.class, mappedBy = "vehicleType")
 	private Set<InvoiceDetails> invoiceDetails;
 
@@ -52,7 +55,7 @@ public class VehicleType {
 	public Double getCapacity() {
 		return capacity;
 	}
-	
+
 	public void setCapacity(Double capacity) {
 		this.capacity = capacity;
 	}
@@ -61,7 +64,8 @@ public class VehicleType {
 		return transportationRates;
 	}
 
-	public void setTransportationRates(Set<TransportationRate> transportationRates) {
+	public void setTransportationRates(
+			Set<TransportationRate> transportationRates) {
 		this.transportationRates = transportationRates;
 	}
 
