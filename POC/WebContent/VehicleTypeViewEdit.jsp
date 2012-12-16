@@ -40,7 +40,7 @@
 						</div>
 						<div class="post-content">
 							<s:form action="addVehicleType">
-
+								<s:textfield name="vehicleTypeId" label="Vehicle Type Id" />
 								<s:textfield name="name" label="Name" />
 								<s:textfield name="capacity" label="Capacity" />
 								<s:submit />

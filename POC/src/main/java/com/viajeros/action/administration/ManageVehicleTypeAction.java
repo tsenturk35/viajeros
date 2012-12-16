@@ -26,6 +26,14 @@ public class ManageVehicleTypeAction extends ActionSupport implements
 	@Autowired
 	private IVehicleTypeDao vehicleTypeDao;
 
+	public IVehicleTypeDao getVehicleTypeDao() {
+		return vehicleTypeDao;
+	}
+
+	public void setVehicleTypeDao(IVehicleTypeDao vehicleTypeDao) {
+		this.vehicleTypeDao = vehicleTypeDao;
+	}
+
 	@Override
 	public VehicleType getModel() {
 		return vehicleType;
