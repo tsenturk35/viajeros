@@ -41,11 +41,11 @@
 	</action>
 
 
-	<action name="editUser" method="edit" class="manageTransportationRateAction">
+	<action name="editTransportationRate" method="edit" class="manageTransportationRateAction">
 		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
-	<action name="deleteUser" method="delete" class="manageTransportationRateAction">
+	<action name="deleteTransportationRate" method="delete" class="manageTransportationRateAction">
 		<result name="success" type="redirect">getTransportationRateList</result>
 	</action>
 
@@ -53,6 +53,22 @@
 
 	<action name="destinationList" method="list" class="manageDestinationAction">
 		<result name="success">/DestinationList.jsp</result>
+	</action>
+	
+	<action name="addVehicleType" method="add" class="manageVehicleTypeAction">
+		<result name="success" type="redirect">getVehicleTypeList</result>
+	</action>
+	
+	
+	<action name="getVehicleTypeList" method="list" class="manageVehicleTypeAction">
+		<result name="success">/VehicleTypeList.jsp</result>
+	</action>
+		<action name="editVehicleType" method="edit" class="manageVehicleTypeAction">
+		<result name="success">/VehicleTypeViewEdit.jsp</result>
+	</action>
+
+	<action name="deleteVehicleType" method="delete" class="manageVehicleTypeAction">
+		<result name="success" type="redirect">getVehicleTypeList</result>
 	</action>
 
 	</package>

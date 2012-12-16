@@ -30,7 +30,7 @@ public class InvoiceDetails {
 	@Column(name = "veichle_no")
 	private String veichleNumber;
 	
-	@Column(name = "veichle_typ_id")
+	@Column(name = "veichle_type_id")
 	private Long veichleTypeId;
 	
 	@Column(name = "delivery_dt")

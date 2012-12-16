@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Transportation Rate Details</title>
+<title>Vehicle Type Details</title>
 <jsp:include page="HeadContent.jsp" />
 </head>
 <body>
-	<jsp:include page="Header.jsp" />
+<jsp:include page="Header.jsp" />
 	<jsp:include page="Menu.jsp" />
 	<div class="container">
 		<div class="row">
@@ -23,7 +23,7 @@
 					<tr>
 						<td><input type="button" id="search" value="Search" /></td>
 						<td><input type="button" id="reset" value="Reset" /></td>
-							<s:form action="TransportationrateViewEdit.jsp">
+							<s:form action="VehicleTypeViewEdit.jsp">
 						<td><input type="submit"  value="Enter New Details " /></td>
 						</s:form>
 					</tr>
@@ -43,29 +43,23 @@
 						<div class="content">
 							<table class="userTable" cellpadding="5px" border="2">
 								<tr class="even">
-									<th>TransportationRateId</th>
-									<th>SourceId</th>
-									<th>DestinationId</th>
-									<th>ClientId</th>
-									<th>VehicleId</th>
-									<th>Amount</th>
+									<th>VehicleTypeId</th>
+									<th>Name</th>
+									<th>Capacity</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</tr>
-								<s:if test="transportationRateList.size() > 0">
-									<s:iterator value="transportationRateList">
+								<s:if test="vehicleTypeList.size() > 0">
+									<s:iterator value="vehicleTypeList">
 										<tr>
-											<td align="center"><s:property value="transportationRateId" /></td>
-											<td align="center"><s:property value="sourceId" /></td>
-											<td align="center"><s:property value="destinationId" /></td>
-											<td align="center"><s:property value="clientId" /></td>
-											<td align="center"><s:property value="VehicleTypeId" /></td>
-											<td align="center"><s:property value="amount" /></td>
-											<td align="center"><s:url id="editURL" action="editTransportationRate">
-													<s:param name="transportationRateId" value="%{transportationRateId}"></s:param>
+											<td align="center"><s:property value="vehicleTypeId" /></td>
+											<td align="center"><s:property value="name" /></td>
+											<td align="center"><s:property value="capacity" /></td>
+											<td align="center"><s:url id="editURL" action="editVehicleType">
+													<s:param name="vehicleTypeId" value="%{vehicleTypeId}"></s:param>
 												</s:url> <s:a href="%{editURL}">Edit</s:a></td>
-											<td align="center"><s:url id="deleteURL" action="deleteTransportationRate">
-													<s:param name="transportationRateId" value="%{transportationRateId}"></s:param>
+											<td align="center"><s:url id="deleteURL" action="deleteVehicleType">
+													<s:param name="vehicleTypeId" value="%{vehicleTypeId}"></s:param>
 												</s:url> <s:a href="%{deleteURL}">Delete</s:a></td>
 										</tr>
 									</s:iterator>
@@ -81,5 +75,6 @@
 	</div>
 
 	<jsp:include page="Footer.jsp" />
+
 </body>
 </html>

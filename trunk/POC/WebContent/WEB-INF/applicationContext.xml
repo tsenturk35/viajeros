@@ -32,11 +32,11 @@
 		class="com.viajeros.action.administration.ManageTransportationRateAction" />
 		
         <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" />
-        
+        <bean id="manageVehicleTypeAction" class="com.viajeros.action.administration.ManageVehicleTypeAction" />
         
         <!-- Dao Class beans -->
         <bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
         <bean id="transportationRatesDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
-        
+        <bean id="vehicleTypeDao" class="com.viajeros.dao.VehicleTypeDaoImpl" />
 
 </beans>

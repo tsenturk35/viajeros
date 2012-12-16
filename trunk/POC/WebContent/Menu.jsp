@@ -16,7 +16,7 @@
 						<div></div>
 						<div>2. <a href="#">Holding Rates</a></div>
 						<div></div>
-						<div>3. <a href="#">Vehicle Types</a></div>
+						<div>3.<s:a action ="getVehicleTypeList">Vehicle Type</s:a></div>
 						<div></div>
 						<div>3. <s:a action="destinationList" >Destinations</s:a></div>
 					</div>
