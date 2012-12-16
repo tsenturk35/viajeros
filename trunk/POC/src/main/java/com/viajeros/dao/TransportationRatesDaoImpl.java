@@ -7,10 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.viajeros.entity.Client;
-import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
-import com.viajeros.entity.VehicleType;
 
 @Repository
 public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
@@ -44,28 +41,28 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
 		return query.list();
 
 	}
-	
+
 	public List<String> getAlldestinationIdList() {
 		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
 		return query.list();
 	}
-	
+
 	public List<String> getAllClientIdList() {
 		Query query = getSession().getNamedQuery("Client.getAllClientId");
 		return query.list();
 	}
-	
+
 	public List<String> getAllVehicleTypeIdList() {
-		Query query = getSession().getNamedQuery("VehicleType.getAllVehicleTypeId");
+		Query query = getSession().getNamedQuery(
+				"VehicleType.getAllVehicleTypeId");
 		return query.list();
 	}
-	
 
 	@Override
-	public void deleteTransportationRate(long userId) {
+	public void deleteTransportationRate(long aTransportationRateId) {
 		try {
 			TransportationRate transportationRate = (TransportationRate) getSession()
-					.get(TransportationRate.class, userId);
+					.get(TransportationRate.class, aTransportationRateId);
 			getSession().delete(transportationRate);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,11 +70,11 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
 	}
 
 	@Override
-	public TransportationRate listTransportationRatesById(long anId) {
+	public TransportationRate listTransportationRatesById(long aTransportationRateId) {
 		TransportationRate transportationRate = null;
 		try {
 			transportationRate = (TransportationRate) getSession().get(
-					TransportationRate.class, anId);
+					TransportationRate.class, aTransportationRateId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
