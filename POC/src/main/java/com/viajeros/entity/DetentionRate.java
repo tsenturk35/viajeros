@@ -31,7 +31,7 @@ public class DetentionRate {
 	@Column(name = "client_id")
 	private Long clientId;
 
-	@Column(name = "vehicle_typ_id")
+	@Column(name = "vehicle_type_id")
 	private Long vehicleTypeId;
 
 	@Column(name = "amount")

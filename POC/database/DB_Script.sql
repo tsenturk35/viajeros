@@ -100,7 +100,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
   `src_id` INT NULL ,
   `destn_id` INT NULL ,
   `client_id` INT NULL ,
-  `vehicle_typ_id` INT NULL DEFAULT 0 ,
+  `vehicle_type_id` INT NULL DEFAULT 0 ,
   `amount` DOUBLE NULL DEFAULT 0 ,
   `deten_days` INT NULL ,
   `last_up_dt` TIMESTAMP NULL ,
@@ -111,7 +111,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
   INDEX `fk_trans_rate_src` (`src_id` ASC) ,
   INDEX `fk_trans_rate_dest` (`destn_id` ASC) ,
   INDEX `fk_detn_rate_clientid` (`client_id` ASC) ,
-  INDEX `fk_detn_rate_vtypid` (`vehicle_typ_id` ASC) ,
+  INDEX `fk_detn_rate_vtypid` (`vehicle_type_id` ASC) ,
   CONSTRAINT `fk_dest_rate_src`
     FOREIGN KEY (`src_id` )
     REFERENCES `viajeros`.`destn` (`destn_id` )
@@ -128,7 +128,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`deten_rate` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_detn_rate_vtypid`
-    FOREIGN KEY (`vehicle_typ_id` )
+    FOREIGN KEY (`vehicle_type_id` )
     REFERENCES `viajeros`.`vehicle_type` (`vehicle_type_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -144,7 +144,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`invoice_detail` (
   `invoice_id` INT NOT NULL ,
   `inv_dt` DATE NULL ,
   `veichle_no` VARCHAR(45) NULL ,
-  `veichle_typ_id` INT NULL ,
+  `veichle_type_id` INT NULL ,
   `delivery_dt` DATE NULL ,
   `lr_no` VARCHAR(45) NULL ,
   `deten_days` INT NULL ,
@@ -152,9 +152,9 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`invoice_detail` (
   `created_by` VARCHAR(45) NULL ,
   `created_dt` TIMESTAMP NULL ,
   PRIMARY KEY (`invoice_id`) ,
-  INDEX `fk_invdtl_vtypid` (`veichle_typ_id` ASC) ,
+  INDEX `fk_invdtl_vtypid` (`veichle_type_id` ASC) ,
   CONSTRAINT `fk_invdtl_vtypid`
-    FOREIGN KEY (`veichle_typ_id` )
+    FOREIGN KEY (`veichle_type_id` )
     REFERENCES `viajeros`.`vehicle_type` (`vehicle_type_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
