@@ -26,10 +26,19 @@ public class ManageTransportationRateAction extends ActionSupport implements
 
 	private TransportationRate transportationRate = new TransportationRate();
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
-	private List<String> sourceIdList = new ArrayList<String>();
-	private List<String> destinationIdList = new ArrayList<String>();
-	private List<String> clientIdList = new ArrayList<String>();
-	private List<String> vehicletypeIdList = new ArrayList<String>();
+	private List<String> sourceIdList;
+	private List<String> destinationIdList;
+	private List<String> clientIdList;
+	private List<String> vehicletypeIdList;
+	private long transportationRateId;
+
+	public long getTransportationRateId() {
+		return transportationRateId;
+	}
+
+	public void setTransportationRateId(long transportationRateId) {
+		this.transportationRateId = transportationRateId;
+	}
 
 	@Autowired
 	private ITransportationRateDao transportationRatesDao;
@@ -63,13 +72,13 @@ public class ManageTransportationRateAction extends ActionSupport implements
 		destinationIdList = transportationRatesDao.getAlldestinationIdList();
 		return SUCCESS;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public String clientIdList() {
 		clientIdList = transportationRatesDao.getAllClientIdList();
 		return SUCCESS;
 	}
-	
+
 	public List<String> getDestinationIdList() {
 		return destinationIdList;
 	}
@@ -107,24 +116,18 @@ public class ManageTransportationRateAction extends ActionSupport implements
 	public void setSourceIdList(List<String> sourceIdList) {
 		this.sourceIdList = sourceIdList;
 	}
-//---------Ritesh plz leave this HttpServletRequest.. i would change it once the application is up and running.. 
-//	some things need to be worked here.. would do it later
-	
-	
+
+	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String delete() {
-		HttpServletRequest request = (HttpServletRequest) ActionContext
-				.getContext().get(ServletActionContext.HTTP_REQUEST);
-		transportationRatesDao.deleteTransportationRate(Long.parseLong(request
-				.getParameter("id")));
+		transportationRatesDao
+				.deleteTransportationRate(getTransportationRateId());
 		return SUCCESS;
 	}
 
+	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String edit() {
-		HttpServletRequest request = (HttpServletRequest) ActionContext
-				.getContext().get(ServletActionContext.HTTP_REQUEST);
 		transportationRate = transportationRatesDao
-				.listTransportationRatesById(Long.parseLong(request
-						.getParameter("id")));
+				.listTransportationRatesById(getTransportationRateId());
 		return SUCCESS;
 	}
 

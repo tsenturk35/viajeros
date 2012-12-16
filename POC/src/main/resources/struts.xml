@@ -24,25 +24,25 @@
 
 	<action name="getSourceIdList" method="sourceIdList"
 		class="manageTransportationRateAction">
-		<result name="success">/TransportationViewEdit.jsp</result>
+		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
 	<action name="getDestinationIdList" method="destinationIdList" class="manageTransportationRateAction">
-		<result name="success">/TransportationViewEdit.jsp</result>
+		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
 	<action name="getClientIdList" method="clientIdList"	class="manageTransportationRateAction">
-		<result name="success">/TransportationViewEdit.jsp</result>
+		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
 	<action name="getVehicleTypeIdList" method="vehicleTypeIdList"
 		class="manageTransportationRateAction">
-		<result name="success">/TransportationViewEdit.jsp</result>
+		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
 
 	<action name="editUser" method="edit" class="manageTransportationRateAction">
-		<result name="success">/TransportationViewEdit.jsp</result>
+		<result name="success">/TransportationrateViewEdit.jsp</result>
 	</action>
 
 	<action name="deleteUser" method="delete" class="manageTransportationRateAction">

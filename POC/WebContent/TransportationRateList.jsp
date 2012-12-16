@@ -38,29 +38,31 @@
 									link</a></span>
 						</div>
 						<div class="content">
-							<table class="userTable" cellpadding="5px">
+							<table class="userTable" cellpadding="5px" border="2">
 								<tr class="even">
-									<th>Source Id</th>
-									<th>Destination Id</th>
-									<th>Client Id</th>
-									<th>Vehicle Type Id</th>
+									<th>TransportationRateId</th>
+									<th>SourceId</th>
+									<th>DestinationId</th>
+									<th>ClientId</th>
+									<th>VehicleId</th>
 									<th>Amount</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</tr>
 								<s:if test="transportationRateList.size() > 0">
-									<s:iterator value="transportationRateList" status="userStatus">
+									<s:iterator value="transportationRateList">
 										<tr>
-											<td><s:property value="sourceId" /></td>
-											<td><s:property value="destinationId" /></td>
-											<td><s:property value="clientId" /></td>
-											<td><s:property value="VehicleTypeId" /></td>
-											<td><s:property value="amount" /></td>
-											<td><s:url id="editURL" action="editUser">
-													<s:param name="id" value="%{id}"></s:param>
+											<td align="center"><s:property value="transportationRateId" /></td>
+											<td align="center"><s:property value="sourceId" /></td>
+											<td align="center"><s:property value="destinationId" /></td>
+											<td align="center"><s:property value="clientId" /></td>
+											<td align="center"><s:property value="VehicleTypeId" /></td>
+											<td align="center"><s:property value="amount" /></td>
+											<td align="center"><s:url id="editURL" action="editUser">
+													<s:param name="transportationRateId" value="%{transportationRateId}"></s:param>
 												</s:url> <s:a href="%{editURL}">Edit</s:a></td>
-											<td><s:url id="deleteURL" action="deleteUser">
-													<s:param name="id" value="%{id}"></s:param>
+											<td align="center"><s:url id="deleteURL" action="deleteUser">
+													<s:param name="transportationRateId" value="%{transportationRateId}"></s:param>
 												</s:url> <s:a href="%{deleteURL}">Delete</s:a></td>
 										</tr>
 									</s:iterator>
