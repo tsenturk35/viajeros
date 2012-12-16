@@ -11,7 +11,7 @@ public interface ITransportationRateDao {
 
 	public List<TransportationRate> getAllTransportationRates();
 
-	public List<Destination> getAllSourceId();
+	public List<String> getAllSourceId();
 
 	void updateTransportationRate(TransportationRate transportationRate);
 
@@ -19,10 +19,10 @@ public interface ITransportationRateDao {
 
 	public void deleteTransportationRate(long anId);
 
-	public List<Destination> getAlldestinationIdList();
+	public List<String> getAlldestinationIdList();
 
-	public List<Client> getAllClientIdList();
+	public List<String> getAllClientIdList();
 
-	public List<VehicleType> getAllVehicleTypeIdList();
+	public List<String> getAllVehicleTypeIdList();
 
 }

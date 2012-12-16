@@ -27,11 +27,11 @@
 		 <!-- <context:component-scan base-package="com.viajeros.action" /> -->
 		 
 		 <!-- Action Class beans -->
-  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction" scope="request"/>
+  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction" />
    		<bean id="manageTransportationRateAction"
-		class="com.viajeros.action.administration.ManageTransportationRateAction" scope="request"/>
+		class="com.viajeros.action.administration.ManageTransportationRateAction" />
 		
-        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" scope="request"/>
+        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" />
         
         
         <!-- Dao Class beans -->

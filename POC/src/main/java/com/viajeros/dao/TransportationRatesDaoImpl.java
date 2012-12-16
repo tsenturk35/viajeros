@@ -35,29 +35,27 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
 
 	@Override
 	public List<TransportationRate> getAllTransportationRates() {
-		Query query = getSession().createQuery(
-				"from TransportationRate order by transportationRateId asc");
-		return query.list();
+		return getSession().createQuery(" from TransportationRate ").list();
 
 	}
 
-	public List<Destination> getAllSourceId() {
+	public List<String> getAllSourceId() {
 		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
 		return query.list();
 
 	}
 	
-	public List<Destination> getAlldestinationIdList() {
+	public List<String> getAlldestinationIdList() {
 		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
 		return query.list();
 	}
 	
-	public List<Client> getAllClientIdList() {
+	public List<String> getAllClientIdList() {
 		Query query = getSession().getNamedQuery("Client.getAllClientId");
 		return query.list();
 	}
 	
-	public List<VehicleType> getAllVehicleTypeIdList() {
+	public List<String> getAllVehicleTypeIdList() {
 		Query query = getSession().getNamedQuery("VehicleType.getAllVehicleTypeId");
 		return query.list();
 	}
