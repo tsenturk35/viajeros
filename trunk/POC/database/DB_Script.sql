@@ -56,7 +56,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
   `src_id` INT NULL ,
   `destn_id` INT NULL ,
   `client_id` INT NULL ,
-  `vehicle_typ_id` INT NULL DEFAULT 0 ,
+  `vehicle_type_id` INT NULL DEFAULT 0 ,
   `amount` DOUBLE NULL DEFAULT 0 ,
   `last_up_dt` TIMESTAMP NULL ,
   `last_up_by` VARCHAR(45) NULL ,
@@ -66,7 +66,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
   INDEX `fk_trans_rate_src` (`src_id` ASC) ,
   INDEX `fk_trans_rate_dest` (`destn_id` ASC) ,
   INDEX `fk_trans_rate_clientid` (`client_id` ASC) ,
-  INDEX `fk_trans_rate_vtypid` (`vehicle_typ_id` ASC) ,
+  INDEX `fk_trans_rate_vtypid` (`vehicle_type_id` ASC) ,
   CONSTRAINT `fk_trans_rate_src`
     FOREIGN KEY (`src_id` )
     REFERENCES `viajeros`.`destn` (`destn_id` )
@@ -83,7 +83,7 @@ CREATE  TABLE IF NOT EXISTS `viajeros`.`trans_rate` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trans_rate_vtypid`
-    FOREIGN KEY (`vehicle_typ_id` )
+    FOREIGN KEY (`vehicle_type_id` )
     REFERENCES `viajeros`.`vehicle_type` (`vehicle_type_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

@@ -13,10 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.ITransportationRateDao;
-import com.viajeros.entity.Client;
-import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
-import com.viajeros.entity.VehicleType;
 
 public class ManageTransportationRateAction extends ActionSupport implements
 		ModelDriven<TransportationRate> {
@@ -29,10 +26,10 @@ public class ManageTransportationRateAction extends ActionSupport implements
 
 	private TransportationRate transportationRate = new TransportationRate();
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
-	private List<Destination> sourceIdList = new ArrayList<Destination>();
-	private List<Destination> destinationIdList = new ArrayList<Destination>();
-	private List<Client> clientIdList = new ArrayList<Client>();
-	private List<VehicleType> vehicletypeIdList = new ArrayList<VehicleType>();
+	private List<String> sourceIdList = new ArrayList<String>();
+	private List<String> destinationIdList = new ArrayList<String>();
+	private List<String> clientIdList = new ArrayList<String>();
+	private List<String> vehicletypeIdList = new ArrayList<String>();
 
 	@Autowired
 	private ITransportationRateDao transportationRatesDao;
@@ -73,27 +70,27 @@ public class ManageTransportationRateAction extends ActionSupport implements
 		return SUCCESS;
 	}
 	
-	public List<Destination> getDestinationIdList() {
+	public List<String> getDestinationIdList() {
 		return destinationIdList;
 	}
 
-	public void setDestinationIdList(List<Destination> destinationIdList) {
+	public void setDestinationIdList(List<String> destinationIdList) {
 		this.destinationIdList = destinationIdList;
 	}
 
-	public List<Client> getClientIdList() {
+	public List<String> getClientIdList() {
 		return clientIdList;
 	}
 
-	public void setClientIdList(List<Client> clientIdList) {
+	public void setClientIdList(List<String> clientIdList) {
 		this.clientIdList = clientIdList;
 	}
 
-	public List<VehicleType> getVehicletypeIdList() {
+	public List<String> getVehicletypeIdList() {
 		return vehicletypeIdList;
 	}
 
-	public void setVehicletypeIdList(List<VehicleType> vehicletypeIdList) {
+	public void setVehicletypeIdList(List<String> vehicletypeIdList) {
 		this.vehicletypeIdList = vehicletypeIdList;
 	}
 
@@ -103,11 +100,11 @@ public class ManageTransportationRateAction extends ActionSupport implements
 		return SUCCESS;
 	}
 
-	public List<Destination> getSourceIdList() {
+	public List<String> getSourceIdList() {
 		return sourceIdList;
 	}
 
-	public void setSourceIdList(List<Destination> sourceIdList) {
+	public void setSourceIdList(List<String> sourceIdList) {
 		this.sourceIdList = sourceIdList;
 	}
 //---------Ritesh plz leave this HttpServletRequest.. i would change it once the application is up and running.. 
