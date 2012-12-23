@@ -8,4 +8,6 @@ public interface IDestinationDao {
 	
 	public List<Destination> getDestinationList();
 
+	public Destination saveDestination(Destination destination);
+
 }

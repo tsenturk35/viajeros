@@ -29,4 +29,9 @@ public class DestinationDaoImpl extends AbstractDaoImpl implements
 		return getSession().createQuery(" from Destination ").list();
 	}
 
+	@Override
+	public Destination saveDestination(Destination destination) {
+		return (Destination)updateEntity(destination);	
+	}
+
 }

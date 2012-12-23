@@ -50,10 +50,15 @@
 	</action>
 
 
-
-	<action name="destinationList" method="list" class="manageDestinationAction">
+	<!-- Destinations begin -->
+	
+	<action name="*Destination" method="{1}" class="manageDestinationAction">
+		<result name="input">/DestinationViewEdit.jsp</result>
 		<result name="success">/DestinationList.jsp</result>
 	</action>
+	
+	<!-- Destinations end -->
+	
 	
 	<action name="addVehicleType" method="add" class="manageVehicleTypeAction">
 		<result name="success" type="redirect">getVehicleTypeList</result>

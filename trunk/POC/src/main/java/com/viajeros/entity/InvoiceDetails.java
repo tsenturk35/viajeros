@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.viajeros.entity.AuditStamp;
 @Entity
 @Table(name = "invoice_detail")
 
@@ -122,6 +120,14 @@ public class InvoiceDetails {
 
 	public void setAuditStamp(AuditStamp auditStamp) {
 		this.auditStamp = auditStamp;
+	}
+	
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(VehicleType vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 
 	@Override

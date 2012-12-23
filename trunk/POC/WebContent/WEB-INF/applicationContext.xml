@@ -27,12 +27,12 @@
 		 <!-- <context:component-scan base-package="com.viajeros.action" /> -->
 		 
 		 <!-- Action Class beans -->
-  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction" />
+  		<bean id="manageRateAction" class="com.viajeros.action.administration.ManageRateAction" scope="prototype"/>
    		<bean id="manageTransportationRateAction"
-		class="com.viajeros.action.administration.ManageTransportationRateAction" />
+		class="com.viajeros.action.administration.ManageTransportationRateAction" scope="prototype"/>
 		
-        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" />
-        <bean id="manageVehicleTypeAction" class="com.viajeros.action.administration.ManageVehicleTypeAction" />
+        <bean id="manageDestinationAction" class="com.viajeros.action.administration.ManageDestinationAction" scope="prototype"/>
+        <bean id="manageVehicleTypeAction" class="com.viajeros.action.administration.ManageVehicleTypeAction" scope="prototype"/>
         
         <!-- Dao Class beans -->
         <bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
