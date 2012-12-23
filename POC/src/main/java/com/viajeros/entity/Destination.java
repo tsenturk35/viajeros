@@ -20,30 +20,15 @@ public class Destination {
 	@Column(name = "destn_id")
 	private Long destinationId;
 
-	@Column(name = "desc")
-	private String description;
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "lat")
 	private Double latitude;
 
-	@Column(name = "long")
+	@Column(name = "lon")
 	private Double longitude;
 	
-
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "destination")
-//	private Set<TransportationRate> transportationRates;
-//	
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "destination")
-//	private Set<DetentionRate> detentionRates;
-
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public Long getDestinationId() {
 		return destinationId;
@@ -51,6 +36,15 @@ public class Destination {
 
 	public void setDestinationId(Long destinationId) {
 		this.destinationId = destinationId;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Double getLatitude() {

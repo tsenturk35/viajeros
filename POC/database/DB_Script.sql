@@ -13,9 +13,9 @@ DROP TABLE IF EXISTS `viajeros`.`destn` ;
 
 CREATE  TABLE IF NOT EXISTS `viajeros`.`destn` (
   `destn_id` INT NOT NULL AUTO_INCREMENT ,
-  `desc` VARCHAR(50) NOT NULL ,
+  `name` VARCHAR(50) NOT NULL ,
   `lat` DOUBLE NULL ,
-  `long` DOUBLE NULL ,
+  `lon` DOUBLE NULL ,
   PRIMARY KEY (`destn_id`) )
 ENGINE = InnoDB;
 

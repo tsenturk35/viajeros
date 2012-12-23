@@ -1,5 +1,6 @@
 package com.viajeros.action.administration;
 
+import java.beans.DesignMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class ManageDestinationAction extends ActionSupport {
 
 	@Autowired
 	private IDestinationDao destinationDao;
-	private ArrayList<Destination> destinationList;
+	private List<Destination> destinationList;
+	private Destination destination;
 	
 	public IDestinationDao getDestinationDao() {
 		return destinationDao;
@@ -34,16 +36,58 @@ public class ManageDestinationAction extends ActionSupport {
 	@Transactional(readOnly=true)
 	public String list(){
 		destinationList = (ArrayList<Destination>) destinationDao.getDestinationList();
-		System.out.println("In list");
 		return SUCCESS;
+	}
+	
+	@Transactional(readOnly=true)
+	public String view(){
+		
+		return INPUT;
+	}
+	
+	@Transactional(readOnly=false, rollbackFor=Throwable.class)
+	public String save(){
+		destinationDao.saveDestination(destination);
+		destinationList = destinationDao.getDestinationList();
+		return SUCCESS;
+	}
+	
+	@Transactional(readOnly=false, rollbackFor=Throwable.class)
+	public String delete(){
+		destinationList = (ArrayList<Destination>) destinationDao.getDestinationList();
+		return SUCCESS;
+	}
+	
+	
+	@Override
+	public void validate() {
+		super.validate();
+		if(destination==null){
+			addActionMessage("Destination not set!!");
+			return;
+		}
+		
+		if(null==destination.getName() || destination.getName().trim().isEmpty())
+			addFieldError("name", "Name is required");
+				
 	}
 
 	public List<Destination> getDestinationList() {
 		return destinationList;
 	}
 
-	public void setDestinationList(ArrayList<Destination> destinationList) {
+	public void setDestinationList(List<Destination> destinationList) {
 		this.destinationList = destinationList;
 	}
+
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+	
+	
 
 }

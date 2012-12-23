@@ -18,7 +18,7 @@
 						<div></div>
 						<div>3.<s:a action ="getVehicleTypeList">Vehicle Type</s:a></div>
 						<div></div>
-						<div>3. <s:a action="destinationList" >Destinations</s:a></div>
+						<div>4. <s:a action="destinationList" >Destinations</s:a></div>
 					</div>
 				</div>
 			</li>
