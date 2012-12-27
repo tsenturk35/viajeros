@@ -47,7 +47,7 @@
                 <div class="navbar">
                     <div class="navbar-inner">
                       <div class="container">
-                            <a class="brand" href="dashboard.html">Viajeros<span class="slogan">.login</span></a>
+                            <a class="brand" href="Dashboard.jsp">Viajeros<span class="slogan">.login</span></a>
                       </div>
                     </div><!-- /navbar-inner -->
                   </div><!-- /navbar -->
@@ -62,7 +62,7 @@
     <div class="container-fluid">
 
         <div class="loginContainer">
-            <form class="form-horizontal" action="dashboard.html" id="loginForm" />
+            <form class="form-horizontal" action="Dashboard.jsp" id="loginForm" />
                 <div class="form-row row-fluid">
                     <div class="span12">
                         <div class="row-fluid">
