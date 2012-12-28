@@ -1,3 +1,5 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
         <!--Responsive navigation button-->  
         <div class="resBtn">
@@ -34,7 +36,7 @@
                         <li>
                             <a href="#"><span class="icon16 entypo-icon-settings"></span>Administration</a>
                             <ul class="sub">
-                                <li><a href="forms.html"><span class="icon16  wpzoom-location"></span>Destinations</a></li>
+                                <li><a href='<s:url action="listDestination" />'><span class="icon16  wpzoom-location"></span>Destinations</a></li>
                                 <li><a href="forms-validation.html"><span class="icon16 wpzoom-calculator"></span>Rates</a></li>
                                 <li><a href="forms-validation.html"><span class="icon16  wpzoom-truck"></span>Vehicle Types</a></li>
                             </ul>
