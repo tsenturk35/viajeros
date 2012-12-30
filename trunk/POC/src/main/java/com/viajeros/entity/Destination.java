@@ -9,11 +9,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select destinationId from Destination destination order by destinationId asc ") })
+import com.viajeros.utils.Strings;
+
+@NamedQueries({ @NamedQuery(name = "Destination.getAllSourceId", query = "select destinationId from Destination destination " +
+		"order by destinationId asc ") })
 
 @Entity
 @Table(name = "destn")
-public class Destination {
+public class Destination implements IOperable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,21 +66,7 @@ public class Destination {
 		this.longitude = longitude;
 	}
 
-//	public Set<TransportationRate> getTransportationRates() {
-//		return transportationRates;
-//	}
-//
-//	public void setTransportationRates(Set<TransportationRate> transportationRates) {
-//		this.transportationRates = transportationRates;
-//	}
-//
-//	public Set<DetentionRate> getDetentionRates() {
-//		return detentionRates;
-//	}
-//
-//	public void setDetentionRates(Set<DetentionRate> detentionRates) {
-//		this.detentionRates = detentionRates;
-//	}
+
 
 	@Override
 	public int hashCode() {
@@ -103,5 +92,12 @@ public class Destination {
 		} else if (!destinationId.equals(other.destinationId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String getPrimaryId() {
+		if(null== getDestinationId())
+			return Strings.EMPTY;
+		return getDestinationId().toString();
 	}
 }

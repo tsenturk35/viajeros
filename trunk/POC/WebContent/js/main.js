@@ -1156,6 +1156,8 @@ $(document).ready(function() {
 			"bLengthChange": false
 		});
 	}
+	
+	
 	if($('table').hasClass('contactTable')){
 		$('.contactTable').dataTable({
 			"bJQueryUI": false,
