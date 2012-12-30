@@ -6,11 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.ActionSupport;
 import com.viajeros.dao.IDestinationDao;
 import com.viajeros.entity.Destination;
 
-public class ManageDestinationAction extends ActionSupport {
+public class ManageDestinationAction extends AbstractAdminAction {
 	
 	private static final long serialVersionUID = -295199890861770511L;
 	
@@ -85,6 +84,11 @@ public class ManageDestinationAction extends ActionSupport {
 
 	public void setDestination(Destination destination) {
 		this.destination = destination;
+	}
+
+	@Override
+	public String getEntityName() {
+		return "Destination";
 	}
 	
 	

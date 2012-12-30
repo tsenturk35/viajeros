@@ -62,21 +62,25 @@
                             <div class="box gradient">
 
                                 <div class="title">
-                                    <h4><span>Destination List</span></h4>
+                                    
+                                    <h4 class="clearfix"><span class="left">Destination List</span>
+                                    <a href="<s:url action='viewDestination' />" class="right box-form">
+                                    		<button class="btn btn-primary" >ADD</button>
+                                	</a>
+                                    </h4>
                                 </div>
                                 <div class="content noPad clearfix">
-                                	<display:table name="destinationList" requestURI="/BuyerList.do"  export="true"  
+                                	<display:table name="destinationList" requestURI="/listDestination.action"  export="true"  
 										pagesize="10" decorator="com.viajeros.utils.CommonTableDecorator" class="responsive dynamicTable display table table-bordered"> 
 											<display:column property ="destinationId" title="ID" sortable="true"/>
 											<display:column property ="name" title="Name" sortable="true"/>
-											<display:column property="view" title="View/Edit"  media ="html"/>
-											<display:column property="delete" title="Delete"  media ="html"/>   
+											<display:column property="action" title="Action"  media ="html"/>
 											<display:setProperty name="export.pdf" value="true" /> 
 								            <display:setProperty name="export.pdf.filename" value="Destinaton.pdf"/>
 								            <display:setProperty name="export.excel.filename" value="Destination.xls"/>
 									</display:table>
 					
-									<a href="<s:url action='viewDestination' />" ><button class="btn btn-primary" >ADD</button></a>
+									
                                  </div>
                                 
                                 
@@ -92,5 +96,8 @@
     </div><!-- End #wrapper -->
     
    	<jsp:include page="Footer.jsp" />
+   	
+  
+   	
     </body>
 </html>
