@@ -8,73 +8,39 @@
 
 	<package name="default" extends="struts-default" namespace="/">
 
-	<action name="manageRateAction" method="execute" class="manageRateAction">
-		<result name="success" type="redirect">RateList.jsp</result>
-	</action>
+		<action name="manageRateAction" method="execute" class="manageRateAction">
+			<result name="success" type="redirect">RateList.jsp</result>
+		</action>
 
-	<action name="addTransportationRates" method="add"
-		class="manageTransportationRateAction">
-		<result name="success" type="redirect">getTransportationRateList</result>
-	</action>
+		<!-- TransportationRate begin -->
 
-	<action name="getTransportationRateList" method="list"
-		class="manageTransportationRateAction">
-		<result name="success">/TransportationRateList.jsp</result>
-	</action>
+		<action name="*TransportationRate" method="{1}"
+			class="manageTransportationRateAction">
+			<result name="input">/TransportationrateViewEdit.jsp</result>
+			<result name="success">/TransportationRateList.jsp</result>
+		</action>
 
-	<action name="getSourceIdList" method="sourceIdList"
-		class="manageTransportationRateAction">
-		<result name="success">/TransportationrateViewEdit.jsp</result>
-	</action>
+		<!-- TransportationRate end -->
 
-	<action name="getDestinationIdList" method="destinationIdList" class="manageTransportationRateAction">
-		<result name="success">/TransportationrateViewEdit.jsp</result>
-	</action>
+		<!-- Destinations begin -->
 
-	<action name="getClientIdList" method="clientIdList"	class="manageTransportationRateAction">
-		<result name="success">/TransportationrateViewEdit.jsp</result>
-	</action>
+		<action name="*Destination" method="{1}" class="manageDestinationAction">
+			<result name="input">/DestinationViewEdit.jsp</result>
+			<result name="success">/DestinationList.jsp</result>
+		</action>
 
-	<action name="getVehicleTypeIdList" method="vehicleTypeIdList"
-		class="manageTransportationRateAction">
-		<result name="success">/TransportationrateViewEdit.jsp</result>
-	</action>
+		<!-- Destinations end -->
 
 
-	<action name="editTransportationRate" method="edit" class="manageTransportationRateAction">
-		<result name="success">/TransportationrateViewEdit.jsp</result>
-	</action>
+		<!-- Vehicle Type begin -->
 
-	<action name="deleteTransportationRate" method="delete" class="manageTransportationRateAction">
-		<result name="success" type="redirect">getTransportationRateList</result>
-	</action>
+		<action name="VehicleType" method="{1}" class="manageVehicleTypeAction">
+			<result name="input">/VehicleTypeViewEdit.jsp</result>
+			<result name="success">/VehicleTypeList.jsp</result>
+		</action>
 
-
-	<!-- Destinations begin -->
-	
-	<action name="*Destination" method="{1}" class="manageDestinationAction">
-		<result name="input">/DestinationViewEdit.jsp</result>
-		<result name="success">/DestinationList.jsp</result>
-	</action>
-	
-	<!-- Destinations end -->
-	
-	
-	<action name="addVehicleType" method="add" class="manageVehicleTypeAction">
-		<result name="success" type="redirect">getVehicleTypeList</result>
-	</action>
-	
-	
-	<action name="getVehicleTypeList" method="list" class="manageVehicleTypeAction">
-		<result name="success">/VehicleTypeList.jsp</result>
-	</action>
-		<action name="editVehicleType" method="edit" class="manageVehicleTypeAction">
-		<result name="success">/VehicleTypeViewEdit.jsp</result>
-	</action>
-
-	<action name="deleteVehicleType" method="delete" class="manageVehicleTypeAction">
-		<result name="success" type="redirect">getVehicleTypeList</result>
-	</action>
+		<!-- Vehicle Type end -->
 
 	</package>
+
 </struts>
