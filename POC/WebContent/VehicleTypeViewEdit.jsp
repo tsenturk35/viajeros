@@ -1,61 +1,99 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="/struts-tags" prefix="s"%>
-<html>
+								
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<jsp:include page="HeadContent.jsp" />
 
+	<jsp:include page="HeadContent.jsp" />
+	
 </head>
-<body>
-
+      
+    <body>
+    
 	<jsp:include page="Header.jsp" />
-	<jsp:include page="Menu.jsp" />
 
-	<div class="container">
-		<div class="row">
-			<div class="span4">
-				<h3>Enter details</h3>
-				<table>
-					<tr>
-						<td>Tag:</td>
-						<td><input type="text" id="tag_input" size="10" /></td>
-					</tr>
-					<tr>
-						<td><input type="button" id="search" value="Search" /></td>
-						<td><input type="button" id="reset" value="Reset" /></td>
-					</tr>
-				</table>
+    <div id="wrapper">
+    
+    	<jsp:include page="Menu.jsp" />
 
-			</div>
-			<div class="span10">
-				<div id="post-container">
-					<div id="post-6272" class="post">
-						<h2>Enter Vehicle Type</h2>
-						<div id="post-meta">
-							<span id="post-meta-author"> By <a href="#" rel="author">info</a>
-								- June 8, 2010
-							</span> <span class="post-tag"><a href="#" rel="tag">service
-									link</a></span>
-						</div>
-						<div class="post-content">
-							<s:form action="addVehicleType">
+
+        <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+
+                <div class="heading">
+
+                    <h3>Destination</h3>                    
+
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 brocco-icon-search"></span></a>
+                    </div>
+
+                    <div class="search">
+
+                        <form id="searchform" action="search.html" />
+                            <input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." />
+                            <input type="submit" id="tipue_search_button" class="search-btn" value="" />
+                        </form>
+                
+                    </div><!-- End search -->
+                    
+                    <ul class="breadcrumb">
+                        <li>You are here:</li>
+                        <li>
+                            <a href="#" class="tip" title="back to dashboard">
+                                <span class="icon16 icomoon-icon-screen"></span>
+                            </a> 
+                            <span class="divider">
+                                <span class="icon16 icomoon-icon-arrow-right"></span>
+                            </span>
+                        </li>
+                        <li class="active">Vehicle Type</li>
+                    </ul>
+
+                </div><!-- End .heading-->
+
+                <!-- Build page from here: -->
+                <div class="row-fluid">
+                	<div class="span12">
+
+                            <div class="box gradient">
+
+                                <div class="title">
+                                    
+                                    <h4 class="clearfix"><span class="left">Vehicle Type View/Edit</span>
+                                    <a href="<s:url action='listVehicleType' />" class="right box-form">
+                                    		<button class="btn" >Back</button>
+                                	</a>
+                                    </h4>
+                                </div>
+
+							<div class="content noPad clearfix">
+							
+							<s:form action="saveVehicleType" cssClass="form-horizontal">
 								<s:textfield name="vehicleTypeId" label="Vehicle Type Id" />
 								<s:textfield name="name" label="Name" />
 								<s:textfield name="capacity" label="Capacity" />
-								<s:submit />
-
 							</s:form>
+							</div>
+
 						</div>
+                     </div>
 
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<jsp:include page="Footer.jsp" />
-</body>
+                                       
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+    
+   	<jsp:include page="Footer.jsp" />
+   	
+  
+   	
+    </body>
 </html>

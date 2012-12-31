@@ -1,80 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="/struts-tags" prefix="s"%>
-<html>
+											
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Vehicle Type Details</title>
-<jsp:include page="HeadContent.jsp" />
+
+	<jsp:include page="HeadContent.jsp" />
+	
 </head>
-<body>
-<jsp:include page="Header.jsp" />
-	<jsp:include page="Menu.jsp" />
-	<div class="container">
-		<div class="row">
-			<div class="span4">
-				<h3>Enter details</h3>
-				<table>
-					<tr>
-						<td>Tag:</td>
-						<td><input type="text" id="tag_input" size="10" /></td>
-					</tr>
-					<tr>
-						<td><input type="button" id="search" value="Search" /></td>
-						<td><input type="button" id="reset" value="Reset" /></td>
-							<s:form action="VehicleTypeViewEdit.jsp">
-						<td><input type="submit"  value="Enter New Details " /></td>
-						</s:form>
-					</tr>
-				</table>
+      
+    <body>
+    
+	<jsp:include page="Header.jsp" />
 
-			</div>
-			<div class="span10">
-				<div id="post-container">
-					<div id="post-6272" class="post">
-						<h2>Rate Details</h2>
-						<div id="post-meta">
-							<span id="post-meta-author"> By <a href="#" rel="author">info</a>
-								- June 8, 2010
-							</span> <span class="post-tag"><a href="#" rel="tag">service
-									link</a></span>
-						</div>
-						<div class="content">
-							<table class="userTable" cellpadding="5px" border="2">
-								<tr class="even">
-									<th>VehicleTypeId</th>
-									<th>Name</th>
-									<th>Capacity</th>
-									<th>Edit</th>
-									<th>Delete</th>
-								</tr>
-								<s:if test="vehicleTypeList.size() > 0">
-									<s:iterator value="vehicleTypeList">
-										<tr>
-											<td align="center"><s:property value="vehicleTypeId" /></td>
-											<td align="center"><s:property value="name" /></td>
-											<td align="center"><s:property value="capacity" /></td>
-											<td align="center"><s:url id="editURL" action="editVehicleType">
-													<s:param name="vehicleTypeId" value="%{vehicleTypeId}"></s:param>
-												</s:url> <s:a href="%{editURL}">Edit</s:a></td>
-											<td align="center"><s:url id="deleteURL" action="deleteVehicleType">
-													<s:param name="vehicleTypeId" value="%{vehicleTypeId}"></s:param>
-												</s:url> <s:a href="%{deleteURL}">Delete</s:a></td>
-										</tr>
-									</s:iterator>
-								</s:if>
-							</table>
-						</div>
+    <div id="wrapper">
+    
+    	<jsp:include page="Menu.jsp" />
 
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
 
-	<jsp:include page="Footer.jsp" />
+                <div class="heading">
 
-</body>
+                    <h3>Vehicle Type</h3>                    
+
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 brocco-icon-search"></span></a>
+                    </div>
+
+                    <div class="search">
+
+                        <form id="searchform" action="search.html" />
+                            <input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." />
+                            <input type="submit" id="tipue_search_button" class="search-btn" value="" />
+                        </form>
+                
+                    </div><!-- End search -->
+                    
+                    <ul class="breadcrumb">
+                        <li>You are here:</li>
+                        <li>
+                            <a href="#" class="tip" title="back to dashboard">
+                                <span class="icon16 icomoon-icon-screen"></span>
+                            </a> 
+                            <span class="divider">
+                                <span class="icon16 icomoon-icon-arrow-right"></span>
+                            </span>
+                        </li>
+                        <li class="active">Vehicle Type</li>
+                    </ul>
+
+                </div><!-- End .heading-->
+
+                <!-- Build page from here: -->
+                <div class="row-fluid">
+                	<div class="span12">
+
+                            <div class="box gradient">
+
+                                <div class="title">
+                                    
+                                    <h4 class="clearfix"><span class="left">Destination List</span>
+                                    <a href="<s:url action='viewVehicleType' />" class="right box-form">
+                                    		<button class="btn btn-primary" >ADD</button>
+                                	</a>
+                                    </h4>
+                                </div>
+                                <div class="content noPad clearfix">
+                                	<display:table name="destinationList" requestURI="/listVehicleType.action"  export="true"  
+										pagesize="10" decorator="com.viajeros.utils.CommonTableDecorator" class="responsive dynamicTable display table table-bordered"> 
+											<display:column property ="vehicleTypeId" title="ID" sortable="true"/>
+											<display:column property ="name" title="Name" sortable="true"/>
+											<display:column property ="capacity" title="Capacity" sortable="true"/>
+											<display:column property="action" title="Action"  media ="html"/>
+											<display:setProperty name="export.pdf" value="true" /> 
+								            <display:setProperty name="export.pdf.filename" value="VehicleType.pdf"/>
+								            <display:setProperty name="export.excel.filename" value="VehicleType.xls"/>
+									</display:table>
+					
+									
+                                 </div>
+                                
+                                
+                            </div>
+                     </div>
+
+                                       
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+    
+   	<jsp:include page="Footer.jsp" />
+   	
+  
+   	
+    </body>
 </html>
+											

@@ -6,12 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.IVehicleTypeDao;
 import com.viajeros.entity.VehicleType;
 
-public class ManageVehicleTypeAction extends ActionSupport implements
+public class ManageVehicleTypeAction extends  AbstractAdminAction implements
 		ModelDriven<VehicleType> {
 	
 	public ManageVehicleTypeAction() {
@@ -40,7 +39,7 @@ public class ManageVehicleTypeAction extends ActionSupport implements
 	}
 	
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
-	public String add() {
+	public String save() {
 		vehicleTypeDao.updateVehicleType(vehicleType);
 		return SUCCESS;
 	}
@@ -57,11 +56,12 @@ public class ManageVehicleTypeAction extends ActionSupport implements
 		return SUCCESS;
 	}
 
-	@Transactional(readOnly = false, rollbackFor = Throwable.class)
-	public String edit() {
-		vehicleType = vehicleTypeDao.listVehicleTypeById(getVehicleTypeId());
-		return SUCCESS;
-	}
+//	@Transactional(readOnly = false, rollbackFor = Throwable.class)
+//	public String edit() {
+//		vehicleType = vehicleTypeDao.listVehicleTypeById(getVehicleTypeId());
+//		return SUCCESS;
+//	}
+	
 	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
@@ -84,6 +84,16 @@ public class ManageVehicleTypeAction extends ActionSupport implements
 
 	public void setVehicleTypeId(long vehicleTypeId) {
 		this.vehicleTypeId = vehicleTypeId;
+	}
+
+	@Override
+	public String view() {
+		return INPUT;
+	}
+
+	@Override
+	public String getEntityName() {
+		return "VehicleType";
 	}
 
 }
