@@ -22,11 +22,15 @@
 -->
 <#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
 <#if parameters.cssClass?? && !(hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssClass?html}"<#rt/>
+ class="span5 ${parameters.cssClass?html}"<#rt/>
 <#elseif parameters.cssClass?? && (hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssClass?html} ${parameters.cssErrorClass?html}"<#rt/>
+ class="span5 ${parameters.cssClass?html} ${parameters.cssErrorClass?html}"<#rt/>
 <#elseif !(parameters.cssClass??) && (hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssErrorClass?html}"<#rt/>
+ class="span5 ${parameters.cssErrorClass?html}"<#rt/>
+ <#elseif hasFieldErrors>
+ class="span5 error"<#rt/>
+ <#else>
+ class="span5"<#rt/>
 </#if>
 <#if parameters.cssStyle?? && !(hasFieldErrors && (parameters.cssErrorStyle?? || parameters.cssErrorClass??))>
  style="${parameters.cssStyle?html}"<#rt/>

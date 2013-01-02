@@ -19,7 +19,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
+
+
 <tr>
     <td colspan="2"><div <#rt/>
 <#if parameters.align??>
@@ -27,3 +28,16 @@
 </#if>
 ><#t/>
 <#include "/${parameters.templateDir}/simple/submit.ftl" />
+-->
+<div class="form-row row-fluid"><#rt/>
+   <div class="span12"><#rt/>
+     <div class="row-fluid"><#rt/>
+    	<div class="form-actions"><#rt/>
+    	<div class="span8"><#rt/>
+		 <div class="span3"></div><#rt/>
+            <div class="span5 controls">
+				<#include "/${parameters.templateDir}/simple/submit.ftl" />
+	  	
+
+
+  

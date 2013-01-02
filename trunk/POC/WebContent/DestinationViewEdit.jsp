@@ -72,10 +72,12 @@
 
 							<div class="content noPad clearfix">
 							
-							<s:form action="saveDestination" cssClass="form-horizontal">
+							 <s:form action="saveDestination">
 								<s:textfield name="destination.name" label="Destination Name" required="true"/>
-								<s:submit cssClass="btn"/>
-							</s:form>
+								<s:textfield name="destination.name" label="Destination Name" required="true"/>
+								<s:textfield name="destination.name" label="Destination Name" required="true"/>
+								<s:submit type="button" class="btn"/>
+							 </s:form> 
 							</div>
 
 						</div>

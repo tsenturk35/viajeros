@@ -19,10 +19,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
+
+ * commented out
+  
 <#include "/${parameters.templateDir}/xhtml/controlheader-core.ftl" />
     <td
 <#if parameters.align??>
     align="${parameters.align?html}"<#t/>
 </#if>
+
 ><#t/>
+ ********************************
+-->
+<#include "/${parameters.templateDir}/${parameters.theme}/controlheader-core.ftl" />
+
+

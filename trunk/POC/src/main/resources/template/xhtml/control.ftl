@@ -19,8 +19,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
+
+* table commented out 
+
 <table class="${parameters.cssClass?default('wwFormTable')?html}"<#rt/>
 <#if parameters.cssStyle??> style="${parameters.cssStyle?html}"<#rt/>
 </#if>
 >
+
+-->

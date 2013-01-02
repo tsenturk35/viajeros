@@ -30,6 +30,8 @@
 </#if>
 <#if parameters.cssClass??>
  class="${parameters.cssClass?html}"<#rt/>
+ <#else>
+ class="btn btn-danger"<#rt/>
 </#if>
 <#if parameters.cssStyle??>
  style="${parameters.cssStyle?html}"<#rt/>
@@ -59,6 +61,8 @@
 </#if>
 <#if parameters.cssClass??>
  class="${parameters.cssClass?html}"<#rt/>
+ <#else>
+ class="btn btn-danger"<#rt/>
 </#if>
 <#if parameters.cssStyle??>
  style="${parameters.cssStyle?html}"<#rt/>
