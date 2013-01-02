@@ -10,8 +10,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.IVehicleTypeDao;
 import com.viajeros.entity.VehicleType;
 
-public class ManageVehicleTypeAction extends  AbstractAdminAction implements
-		ModelDriven<VehicleType> {
+public class ManageVehicleTypeAction extends  AbstractAdminAction {
 	
 	public ManageVehicleTypeAction() {
 		super();
@@ -31,11 +30,6 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction implements
 
 	public void setVehicleTypeDao(IVehicleTypeDao vehicleTypeDao) {
 		this.vehicleTypeDao = vehicleTypeDao;
-	}
-
-	@Override
-	public VehicleType getModel() {
-		return vehicleType;
 	}
 	
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)

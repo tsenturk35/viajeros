@@ -12,10 +12,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.viajeros.utils.Strings;
+
 @NamedQueries({ @NamedQuery(name = "VehicleType.getAllVehicleTypeId", query = "select vehicleTypeId from VehicleType vehicleType order by vehicleTypeId asc ") })
 @Entity
 @Table(name = "vehicle_type")
-public class VehicleType {
+public class VehicleType implements IOperable {
 
 	@Id
 	@Column(name = "vehicle_type_id")
@@ -101,6 +103,13 @@ public class VehicleType {
 		} else if (!vehicleTypeId.equals(other.vehicleTypeId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String getPrimaryId() {
+		if (null == getVehicleTypeId())
+			return Strings.EMPTY;
+		return getVehicleTypeId().toString();
 	}
 
 }

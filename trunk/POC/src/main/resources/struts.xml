@@ -11,8 +11,9 @@
 
 	<package name="default" extends="struts-default" namespace="/">
 
-		<action name="manageRateAction" method="execute" class="manageRateAction">
-			<result name="success" type="redirect">RateList.jsp</result>
+		<action name="*DetentionRate" method="{1}" class="manageRateAction">
+		<result name="input">/RateViewEdit.jsp</result>
+			<result name="success">/RateList.jsp</result>
 		</action>
 
 		<!-- TransportationRate begin -->
@@ -37,7 +38,7 @@
 
 		<!-- Vehicle Type begin -->
 
-		<action name="VehicleType" method="{1}" class="manageVehicleTypeAction">
+		<action name="*VehicleType" method="{1}" class="manageVehicleTypeAction">
 			<result name="input">/VehicleTypeViewEdit.jsp</result>
 			<result name="success">/VehicleTypeList.jsp</result>
 		</action>

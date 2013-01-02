@@ -71,7 +71,7 @@
                                     </h4>
                                 </div>
                                 <div class="content noPad clearfix">
-                                	<display:table name="destinationList" requestURI="/listVehicleType.action"  export="true"  
+                                	<display:table name="vehicleTypeList" requestURI="/listVehicleType.action"  export="true"  
 										pagesize="10" decorator="com.viajeros.utils.CommonTableDecorator" class="responsive dynamicTable display table table-bordered"> 
 											<display:column property ="vehicleTypeId" title="ID" sortable="true"/>
 											<display:column property ="name" title="Name" sortable="true"/>
