@@ -19,7 +19,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
--->
+
+ *************************
 ${parameters.after?if_exists}<#t/>
     </td><#lt/>
 </tr>
+
+
+<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
+<#if hasFieldErrors>
+<#list fieldErrors[parameters.name] as error>
+<tr errorFor="${parameters.id}">
+<#if parameters.labelposition?default("") == 'top'>
+    <td align="left" valign="top" colspan="2"><#rt/>
+<#else>
+    <td align="center" valign="top" colspan="2"><#rt/>
+</#if>
+        <span class="errorMessage">${error?html}</span><#t/>
+    </td><#lt/>
+</tr>
+</#list>
+</#if>
+
+-->
+<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
+<#if hasFieldErrors>
+<#list fieldErrors[parameters.name] as error>
+<lable errorFor="${parameters.id}"
+  class="error">${error?html}
+  </lable><#t/>
+    
+</#list>
+</#if>
+</div><#t/>
+</div><#t/>
+</div><#t/>

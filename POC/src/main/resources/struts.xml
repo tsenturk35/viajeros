@@ -5,6 +5,9 @@
 <struts>
 	<constant name="struts.objectFactory"
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ui.theme" value="viajeros" />
+	<constant name="struts.ui.templateDir" value="template" />
+		
 
 	<package name="default" extends="struts-default" namespace="/">
 
