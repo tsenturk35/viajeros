@@ -10,11 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.viajeros.utils.Strings;
+
 
 
 @Entity
 @Table(name = "trans_rate")
-public class TransportationRate {
+public class TransportationRate implements IOperable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -159,6 +161,13 @@ public class TransportationRate {
 		} else if (!transportationRateId.equals(other.transportationRateId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String getPrimaryId() {
+		if(null== getTransportationRateId())
+			return Strings.EMPTY;
+		return getTransportationRateId().toString();
 	}
 	
 	

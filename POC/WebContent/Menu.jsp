@@ -37,7 +37,7 @@
                             <a href="#"><span class="icon16 entypo-icon-settings"></span>Administration</a>
                             <ul class="sub">
                                 <li><a href='<s:url action="listDestination" />'><span class="icon16  wpzoom-location"></span>Destinations</a></li>
-                                <li><a href='<s:url action="listTransportationRate" />'><span class="icon16  wpzoom-location"></span>Transportation Rate</a></li>
+                                <li><a href='<s:url action="listTransportationRate" />'><span class=" iconic-icon-steering-wheel"></span>Transportation Rate</a></li>
                                 <li><a href='<s:url action="listRate" />'><span class="icon16 wpzoom-calculator"></span>Rates</a></li>
                                 <li><a href='<s:url action="listVehicleType" />'><span class="icon16  wpzoom-truck"></span>Vehicle Types</a></li>
                             </ul>

@@ -18,8 +18,7 @@ import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
 import com.viajeros.entity.VehicleType;
 
-public class ManageTransportationRateAction extends AbstractAdminAction
-		implements ModelDriven<TransportationRate> {
+public class ManageTransportationRateAction extends AbstractAdminAction {
 
 	public ManageTransportationRateAction() {
 		super();
@@ -46,10 +45,6 @@ public class ManageTransportationRateAction extends AbstractAdminAction
 	@Autowired
 	private ITransportationRateDao transportationRatesDao;
 
-	@Override
-	public TransportationRate getModel() {
-		return transportationRate;
-	}
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String save() {
