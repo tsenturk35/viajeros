@@ -17,6 +17,7 @@ import com.viajeros.entity.Client;
 import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
 import com.viajeros.entity.VehicleType;
+import com.viajeros.utils.Strings;
 
 public class ManageTransportationRateAction extends AbstractAdminAction {
 
@@ -32,15 +33,6 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 	private List<Destination> destinationIdList;
 	private List<Client> clientIdList;
 	private List<VehicleType> vehicletypeIdList;
-	private long transportationRateId;
-
-	public long getTransportationRateId() {
-		return transportationRateId;
-	}
-
-	public void setTransportationRateId(long transportationRateId) {
-		this.transportationRateId = transportationRateId;
-	}
 
 	@Autowired
 	private ITransportationRateDao transportationRatesDao;
@@ -55,38 +47,22 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 
 	@Transactional(readOnly = true)
 	public String view() {
-		sourceIdList = transportationRatesDao.getAllSourceId();
 		destinationIdList = transportationRatesDao.getAlldestinationIdList();
-		clientIdList = transportationRatesDao.getAllClientIdList();
 		vehicletypeIdList = transportationRatesDao.getAllVehicleTypeIdList();
-
+		sourceIdList = transportationRatesDao.getAllSourceId();
+		clientIdList = transportationRatesDao.getAllClientIdList();
+		if(!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		transportationRate = transportationRatesDao.listTransportationRatesById(Long.valueOf(getPrimaryId()));
+	
 		return INPUT;
 	}
 
 	@Transactional(readOnly = true)
 	public String list() {
-		transportationRateList = transportationRatesDao
-				.getAllTransportationRates();
+		transportationRateList = transportationRatesDao.getAllTransportationRates();
 		return SUCCESS;
 	}
-
-//	@Transactional(readOnly = true)
-//	public String sourceIdList() {
-//		sourceIdList = transportationRatesDao.getAllSourceId();
-//		return SUCCESS;
-//	}
-//
-//	@Transactional(readOnly = true)
-//	public String destinationIdList() {
-//		destinationIdList = transportationRatesDao.getAlldestinationIdList();
-//		return SUCCESS;
-//	}
-//
-//	@Transactional(readOnly = true)
-//	public String clientIdList() {
-//		clientIdList = transportationRatesDao.getAllClientIdList();
-//		return SUCCESS;
-//	}
 
 	public List<Destination> getDestinationIdList() {
 		return destinationIdList;
@@ -112,12 +88,6 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 		this.vehicletypeIdList = vehicletypeIdList;
 	}
 
-//	@Transactional(readOnly = true)
-//	public String vehicleTypeIdList() {
-//		vehicletypeIdList = transportationRatesDao.getAllVehicleTypeIdList();
-//		return SUCCESS;
-//	}
-
 	public List<Destination> getSourceIdList() {
 		return sourceIdList;
 	}
@@ -128,17 +98,11 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String delete() {
-		transportationRatesDao
-				.deleteTransportationRate(getTransportationRateId());
+		if(!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		transportationRatesDao.deleteTransportationRate(Long.valueOf(getPrimaryId()));
 		return SUCCESS;
 	}
-
-//	@Transactional(readOnly = false, rollbackFor = Throwable.class)
-//	public String edit() {
-//		transportationRate = transportationRatesDao
-//				.listTransportationRatesById(getTransportationRateId());
-//		return SUCCESS;
-//	}
 
 	public TransportationRate getTransportationRate() {
 		return transportationRate;
