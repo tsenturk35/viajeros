@@ -57,7 +57,11 @@ public class ManageDestinationAction extends AbstractAdminAction {
 	
 	@Transactional(readOnly=false, rollbackFor=Throwable.class)
 	public String delete(){
-		destinationList = (ArrayList<Destination>) destinationDao.getDestinationList();
+		if(!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		
+		destinationDao.deleteDestination(Long.valueOf(getPrimaryId()));
+		
 		return SUCCESS;
 	}
 	

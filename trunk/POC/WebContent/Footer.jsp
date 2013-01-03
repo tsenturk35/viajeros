@@ -13,8 +13,10 @@
 		<p>Are you sure you want to delete this?</p>
 	</div>
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-danger">Delete</button>
+		<a href="#" id="modalDiaglogUrl" >
+		<button class="btn btn-danger"  data-dismiss="modal" aria-hidden="true"><span class="icon16 white brocco-icon-trashcan"></span> Delete</button>
+		</a>
+		<button class="btn" data-dismiss="modal" aria-hidden="true"><span class="icon16 brocco-icon-cancel"></span> Cancel</button>
 	</div>
 </div>
 
