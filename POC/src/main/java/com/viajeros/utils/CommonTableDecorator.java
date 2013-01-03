@@ -16,19 +16,20 @@ public class CommonTableDecorator extends TableDecorator {
 		
 		
 		return  "<div class='controls center'>"+
-        "<a href='"+editUrl+"' title='Edit' class='tip'><span class='icon12 icomoon-icon-pencil'></span></a>"+
-        "<a href='"+deleteUrl+"' title='Remove' class='tip'><span class='icon12 icomoon-icon-remove'></span></a>"+
+        "<a href=\""+editUrl+"\" title='Edit' class='tip'><span class='icon12 icomoon-icon-pencil'></span></a>"+
+        "<a href=\""+deleteUrl+"\" title='Remove' class='tip'><span class='icon12 icomoon-icon-remove'></span></a>"+
         "</div>";
 	}
 
 	private String getDeleteUrl(String id, String pageName) {
 		String url = "delete"+pageName+".action?"+Constants.PRIMARY_ID_KEY+"="+id;
-		String finalUrl = "javascript:deleteEntityConfirmation("+url+")";
+		url =  StringEscapeUtils.escapeHtml(url);
+		String finalUrl = "javascript:deleteEntity('"+url+"');";
 		return StringEscapeUtils.escapeHtml(finalUrl);
 	}
 
 	private String getEditUrl(String id, String pageName) {
-		return StringEscapeUtils.escapeHtml("edit"+pageName+".action?"+Constants.PRIMARY_ID_KEY+"="+id);
+		return StringEscapeUtils.escapeHtml("view"+pageName+".action?"+Constants.PRIMARY_ID_KEY+"="+id);
 	}
 		
 

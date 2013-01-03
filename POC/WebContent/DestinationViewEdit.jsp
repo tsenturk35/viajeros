@@ -33,7 +33,7 @@
 
                     <div class="search">
 
-                        <form id="searchform" action="search.html" />
+                        <form id="searchform" action="search.html">
                             <input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." />
                             <input type="submit" id="tipue_search_button" class="search-btn" value="" />
                         </form>
@@ -65,7 +65,7 @@
                                     
                                     <h4 class="clearfix"><span class="left">Destination View/Edit</span>
                                     <a href="<s:url action='listDestination' />" class="right box-form">
-                                    		<button class="btn" >Back</button>
+                                    	<button class="btn btn-info"><span class="icon16  typ-icon-back white"></span> Back</button>
                                 	</a>
                                     </h4>
                                 </div>
@@ -74,9 +74,7 @@
 							
 							 <s:form action="saveDestination">
 								<s:textfield name="destination.name" label="Destination Name" required="true"/>
-								<s:textfield name="destination.name" label="Destination Name" required="true"/>
-								<s:textfield name="destination.name" label="Destination Name" required="true"/>
-								<s:submit type="button" class="btn"/>
+								<s:submit type="button" value="Save Changes"/>
 							 </s:form> 
 							</div>
 

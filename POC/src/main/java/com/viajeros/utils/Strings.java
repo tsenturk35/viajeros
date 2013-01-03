@@ -55,7 +55,7 @@ public class Strings {
 	public static boolean hasValue(String aString) {
 		if (aString == null)
 			return false;
-		return aString.trim().length()==0;
+		return !(aString.trim().length()==0);
 	}
 
 	public static boolean containsNumericCharacters(String aString) {

@@ -1,3 +1,12 @@
+// delete Function
+
+function deleteEntity(url){
+	//show confirmation msg box
+	$("#modalDeleteConfirmation").modal();
+	
+}
+
+
 //window resize events
 $(window).resize(function() {
 	//get the window size
