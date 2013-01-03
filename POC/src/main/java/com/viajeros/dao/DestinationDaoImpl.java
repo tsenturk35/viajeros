@@ -42,4 +42,11 @@ public class DestinationDaoImpl extends AbstractDaoImpl implements
 		return (Destination) query.uniqueResult();
 	}
 
+	@Override
+	public void deleteDestination(Long id) {
+		Query query = getSession().createQuery(" delete from Destination destination where destination.destinationId = :destinationId ");
+		query.setLong("destinationId", id);
+		query.executeUpdate();
+	}
+
 }

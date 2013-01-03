@@ -1,9 +1,8 @@
 // delete Function
 
 function deleteEntity(url){
-	//show confirmation msg box
+	$("#modalDeleteConfirmation").find("#modalDiaglogUrl").attr("href",url);
 	$("#modalDeleteConfirmation").modal();
-	
 }
 
 

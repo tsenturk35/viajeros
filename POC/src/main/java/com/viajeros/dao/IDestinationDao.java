@@ -12,4 +12,6 @@ public interface IDestinationDao {
 
 	public Destination getDestinationById(Long id);
 
+	public void deleteDestination(Long valueOf);
+
 }
