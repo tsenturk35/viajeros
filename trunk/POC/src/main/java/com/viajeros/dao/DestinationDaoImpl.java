@@ -2,6 +2,7 @@ package com.viajeros.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,13 @@ public class DestinationDaoImpl extends AbstractDaoImpl implements
 	@Override
 	public Destination saveDestination(Destination destination) {
 		return (Destination)updateEntity(destination);	
+	}
+
+	@Override
+	public Destination getDestinationById(Long id) {
+		Query query = getSession().createQuery(" from Destination destination where destination.destinationId = :destinationId ");
+		query.setLong("destinationId", id);
+		return (Destination) query.uniqueResult();
 	}
 
 }

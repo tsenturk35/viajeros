@@ -2,8 +2,25 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
+<!-- Modal -->
+<div id="modalDeleteConfirmation" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Please confirm</h3>
+	</div>
+	<div class="modal-body">
+		<p>Are you sure you want to delete this?</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button class="btn btn-danger">Delete</button>
+	</div>
+</div>
 
-    <!-- Le javascript
+
+
+<!-- Le javascript
     ================================================== -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap/bootstrap.js"></script>  

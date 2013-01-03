@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.viajeros.dao.IDestinationDao;
 import com.viajeros.entity.Destination;
+import com.viajeros.utils.Strings;
 
 public class ManageDestinationAction extends AbstractAdminAction {
 	
@@ -33,12 +34,16 @@ public class ManageDestinationAction extends AbstractAdminAction {
 
 	@Transactional(readOnly=true)
 	public String list(){
-		destinationList = (ArrayList<Destination>) destinationDao.getDestinationList();
+		destinationList =  destinationDao.getDestinationList();
 		return SUCCESS;
 	}
 	
 	@Transactional(readOnly=true)
 	public String view(){
+		if(!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		
+		destination = destinationDao.getDestinationById(Long.valueOf(getPrimaryId()));
 		
 		return INPUT;
 	}

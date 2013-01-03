@@ -10,4 +10,6 @@ public interface IDestinationDao {
 
 	public Destination saveDestination(Destination destination);
 
+	public Destination getDestinationById(Long id);
+
 }
