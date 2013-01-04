@@ -45,10 +45,11 @@ ${parameters.after?if_exists}<#t/>
 <#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
 <#if hasFieldErrors>
 <#list fieldErrors[parameters.name] as error>
-<lable errorFor="${parameters.id}"
+
+<label errorFor="${parameters.id}"
   class="error">${error?html}
-  </lable><#t/>
-    
+  </label><#t/>
+
 </#list>
 </#if>
 </div><#t/>
