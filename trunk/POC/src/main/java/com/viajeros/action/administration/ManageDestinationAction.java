@@ -60,6 +60,7 @@ public class ManageDestinationAction extends AbstractAdminAction {
 			return INPUT;
 		
 		destinationDao.deleteDestination(Long.valueOf(getPrimaryId()));
+		destinationList =  destinationDao.getDestinationList();
 		
 		return SUCCESS;
 	}
@@ -74,7 +75,7 @@ public class ManageDestinationAction extends AbstractAdminAction {
 		}
 		
 		if(null==destination.getName() || destination.getName().trim().isEmpty())
-			addFieldError("name", "Name is required");
+			addFieldError("destination.name", "Name is required");
 				
 	}
 
