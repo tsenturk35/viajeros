@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.viajeros.entity.Destination;
+import com.viajeros.exception.UpdateException;
 
 @Repository
 public class DestinationDaoImpl extends AbstractDaoImpl implements
@@ -43,10 +44,12 @@ public class DestinationDaoImpl extends AbstractDaoImpl implements
 	}
 
 	@Override
-	public void deleteDestination(Long id) {
+	public void deleteDestination(Long id) throws UpdateException {
 		Query query = getSession().createQuery(" delete from Destination destination where destination.destinationId = :destinationId ");
 		query.setLong("destinationId", id);
-		query.executeUpdate();
+		int result = query.executeUpdate();
+		if(result==0)
+			throw new UpdateException("Unable to delete. Entity Not found");
 	}
 
 }

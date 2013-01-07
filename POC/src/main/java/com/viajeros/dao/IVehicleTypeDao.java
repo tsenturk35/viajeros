@@ -6,12 +6,12 @@ import com.viajeros.entity.VehicleType;
 
 public interface IVehicleTypeDao {
 	
-	public List<VehicleType> getAllVehicleTypeList();
+	public List<VehicleType> getVehicleTypeList();
 	
 	void updateVehicleType(VehicleType vehicleType);
 
 	void deleteVehicleType(long aVehicleTypeId);
 
-	VehicleType listVehicleTypeById(long aVehicleTypeId);
+	VehicleType getVehicleTypeById(long aVehicleTypeId);
 
 }

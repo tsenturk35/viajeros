@@ -3,6 +3,7 @@ package com.viajeros.dao;
 import java.util.List;
 
 import com.viajeros.entity.Destination;
+import com.viajeros.exception.UpdateException;
 
 public interface IDestinationDao {
 	
@@ -12,6 +13,6 @@ public interface IDestinationDao {
 
 	public Destination getDestinationById(Long id);
 
-	public void deleteDestination(Long valueOf);
+	public void deleteDestination(Long valueOf) throws UpdateException;
 
 }

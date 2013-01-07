@@ -82,3 +82,24 @@
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="plugins/touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    
+<s:if test="hasActionErrors()">
+	<div id="errorMsgDiv" class="hide">
+		<s:actionerror escape="true" />
+	</div>
+	<script type="text/javascript">
+		var errorMsg = htmlEncode($('#errorMsgDiv').html());
+		showErrorMsg(errorMsg);
+	</script>
+</s:if>
+
+<s:if test="hasActionMessages()">
+	<div id="successMsgDiv" class="hide">
+		<s:actionmessage escape="true" />
+	</div>
+	<script type="text/javascript">
+		var successMsg = htmlEncode($('#successMsgDiv').html());
+		showSuccessMsg(successMsg);
+	</script>
+</s:if>
+    

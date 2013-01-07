@@ -5,11 +5,12 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.viajeros.entity.VehicleType;
 
+@SuppressWarnings("unchecked")
 @Repository
-public class VehicleTypeDaoImpl extends AbstractDaoImpl implements
-		IVehicleTypeDao {
+public class VehicleTypeDaoImpl extends AbstractDaoImpl implements	IVehicleTypeDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -20,14 +21,13 @@ public class VehicleTypeDaoImpl extends AbstractDaoImpl implements
 	}
 
 	@Override
-	public List<VehicleType> getAllVehicleTypeList() {
+	public List<VehicleType> getVehicleTypeList() {
 		return getSession().createQuery(" from VehicleType ").list();
 	}
 
 	@Override
 	public void updateVehicleType(VehicleType vehicleType) {
 		updateEntity(vehicleType);
-
 	}
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -36,25 +36,14 @@ public class VehicleTypeDaoImpl extends AbstractDaoImpl implements
 
 	@Override
 	public void deleteVehicleType(long aVehicleTypeId) {
-		try {
-			VehicleType vehicleType = (VehicleType) getSession()
+		VehicleType vehicleType = (VehicleType) getSession()
 					.get(VehicleType.class, aVehicleTypeId);
-			getSession().delete(vehicleType);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		getSession().delete(vehicleType);
 	}
 
 	@Override
-	public VehicleType listVehicleTypeById(long aVehicleTypeId) {
-		VehicleType vehicleType = null;
-		try {
-			vehicleType = (VehicleType) getSession().get(
-					VehicleType.class, aVehicleTypeId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return vehicleType;
+	public VehicleType getVehicleTypeById(long aVehicleTypeId) {
+		return (VehicleType) getSession().get(VehicleType.class, aVehicleTypeId);
 	}
 
 

@@ -40,7 +40,7 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction {
 	
 	@Transactional(readOnly = true)
 	public String list() {
-		vehicleTypeList = vehicleTypeDao.getAllVehicleTypeList();
+		vehicleTypeList = vehicleTypeDao.getVehicleTypeList();
 		return SUCCESS;
 	}
 

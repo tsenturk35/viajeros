@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.viajeros.dao.IDestinationDao;
 import com.viajeros.entity.Destination;
+import com.viajeros.exception.UpdateException;
 import com.viajeros.utils.Strings;
 
 public class ManageDestinationAction extends AbstractAdminAction {
@@ -43,6 +44,8 @@ public class ManageDestinationAction extends AbstractAdminAction {
 			return INPUT;
 		
 		destination = destinationDao.getDestinationById(Long.valueOf(getPrimaryId()));
+		if(null==destination)
+			addActionError("Error: Destination not found!");
 		
 		return INPUT;
 	}
@@ -51,6 +54,7 @@ public class ManageDestinationAction extends AbstractAdminAction {
 	public String save(){
 		destinationDao.saveDestination(destination);
 		destinationList = destinationDao.getDestinationList();
+		addActionMessage("Destination saved successfully.");
 		return SUCCESS;
 	}
 	
@@ -58,9 +62,20 @@ public class ManageDestinationAction extends AbstractAdminAction {
 	public String delete(){
 		if(!Strings.hasValue(getPrimaryId()))
 			return INPUT;
-		
-		destinationDao.deleteDestination(Long.valueOf(getPrimaryId()));
 		destinationList =  destinationDao.getDestinationList();
+		
+		try {
+			destinationDao.deleteDestination(Long.valueOf(getPrimaryId()));
+		} catch (NumberFormatException e) {
+			addActionError(e.getMessage());
+			return SUCCESS;
+		} catch (UpdateException e) {
+			addActionError(e.getMessage());
+			return SUCCESS;
+		} 
+		
+		
+		addActionMessage("Destination deleted successfully!");
 		
 		return SUCCESS;
 	}
@@ -70,7 +85,6 @@ public class ManageDestinationAction extends AbstractAdminAction {
 	public void validate() {
 		super.validate();
 		if(destination==null){
-			addActionMessage("Destination not set!!");
 			return;
 		}
 		

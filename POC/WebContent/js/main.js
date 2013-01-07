@@ -5,6 +5,50 @@ function deleteEntity(url){
 	$("#modalDeleteConfirmation").modal();
 }
 
+function showSuccessMsg(msg){
+	var dmsg = htmlDecode(msg);
+	$.pnotify({
+		type: 'success',
+		title: 'Success',
+		text: dmsg ,
+		icon: 'picon icon16 iconic-icon-check-alt white',
+		opacity: 0.95,
+		history: false,
+		sticker: false
+	});
+
+}
+
+function showErrorMsg(msg){
+	var dmsg = htmlDecode(msg);
+	$.pnotify({
+		type: 'error',
+	    title: 'Error',
+		text: dmsg,
+	    icon: 'picon icon24 typ-icon-cancel white',
+	    opacity: 0.95,
+	    history: false,
+	    sticker: false
+	});
+	
+}
+
+function htmlEncode(value){
+    if (value) {
+        return $('<div />').text(value).html();
+    } else {
+        return '';
+    }
+}
+ 
+function htmlDecode(value) {
+    if (value) {
+        return $('<div />').html(value).text();
+    } else {
+        return '';
+    }
+}
+
 
 //window resize events
 $(window).resize(function() {

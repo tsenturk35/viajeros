@@ -65,7 +65,7 @@
                                     
                                     <h4 class="clearfix"><span class="left">Destination List</span>
                                     <a href="<s:url action='viewDestination' />" class="right box-form">
-                                    		<button class="btn btn-info" ><span class="icon15 icomoon-icon-plus-2 white"></span> ADD</button>
+                                    	<button class="btn btn-info" ><span class="icon15 icomoon-icon-plus-2 white"></span> ADD</button>
                                 	</a>
                                     </h4>
                                 </div>

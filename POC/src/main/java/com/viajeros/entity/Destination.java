@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.viajeros.utils.Strings;
 
@@ -17,6 +18,9 @@ import com.viajeros.utils.Strings;
 @Entity
 @Table(name = "destn")
 public class Destination implements IOperable {
+	
+	@Version
+	private Long version;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -100,4 +104,14 @@ public class Destination implements IOperable {
 			return Strings.EMPTY;
 		return getDestinationId().toString();
 	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+	
+	
 }
