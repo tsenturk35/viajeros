@@ -12,6 +12,7 @@ USE `viajeros` ;
 DROP TABLE IF EXISTS `viajeros`.`destn` ;
 
 CREATE  TABLE IF NOT EXISTS `viajeros`.`destn` (
+  `version` INT(11),
   `destn_id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(50) NOT NULL ,
   `lat` DOUBLE NULL ,

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.viajeros.utils.Strings;
 
@@ -17,6 +18,9 @@ import com.viajeros.utils.Strings;
 @Entity
 @Table(name = "trans_rate")
 public class TransportationRate implements IOperable {
+	
+	@Version
+	private Long version;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -135,6 +139,14 @@ public class TransportationRate implements IOperable {
 		this.vehicleType = vehicleType;
 	}
 
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -145,6 +157,8 @@ public class TransportationRate implements IOperable {
 						.hashCode());
 		return result;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

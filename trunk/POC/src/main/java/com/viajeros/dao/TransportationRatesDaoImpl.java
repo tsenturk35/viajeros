@@ -2,19 +2,17 @@ package com.viajeros.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.viajeros.entity.Client;
-import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
 import com.viajeros.entity.VehicleType;
 
+@SuppressWarnings("unchecked")
 @Repository
-public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
-		ITransportationRateDao {
+public class TransportationRatesDaoImpl extends AbstractDaoImpl implements	ITransportationRateDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -39,49 +37,25 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements
 
 	}
 
-	public List<Destination> getAllSourceId() {
-		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
-		return query.list();
-
-	}
-
-	public List<Destination> getAlldestinationIdList() {
-		Query query = getSession().getNamedQuery("Destination.getAllSourceId");
-		return query.list();
-	}
-
-	public List<Client> getAllClientIdList() {
-		Query query = getSession().getNamedQuery("Client.getAllClientId");
-		return query.list();
-	}
-
 	public List<VehicleType> getAllVehicleTypeIdList() {
-		Query query = getSession().getNamedQuery(
-				"VehicleType.getAllVehicleTypeId");
-		return query.list();
+		return getSession().getNamedQuery("VehicleType.getAllVehicleTypeId").list();
 	}
 
 	@Override
 	public void deleteTransportationRate(long aTransportationRateId) {
-		try {
-			TransportationRate transportationRate = (TransportationRate) getSession()
+		TransportationRate transportationRate = (TransportationRate) getSession()
 					.get(TransportationRate.class, aTransportationRateId);
-			getSession().delete(transportationRate);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		getSession().delete(transportationRate);
 	}
 
 	@Override
-	public TransportationRate listTransportationRatesById(long aTransportationRateId) {
-		TransportationRate transportationRate = null;
-		try {
-			transportationRate = (TransportationRate) getSession().get(
-					TransportationRate.class, aTransportationRateId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return transportationRate;
+	public TransportationRate getTransportationRatesById(long aTransportationRateId) {
+		return (TransportationRate) getSession().get(TransportationRate.class, aTransportationRateId);
+	}
+
+	@Override
+	public List<Client> getClientList() {
+		return getSession().createQuery(" from Client ").list();
 	}
 
 }

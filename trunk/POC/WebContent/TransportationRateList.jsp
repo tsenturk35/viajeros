@@ -36,8 +36,7 @@
 					<div class="search">
 
 						<form id="searchform" action="search.html" />
-						<input type="text" id="tipue_search_input" class="top-search"
-							placeholder="Search here ..." /> <input type="submit"
+							<input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." /> <input type="submit"
 							id="tipue_search_button" class="search-btn" value="" />
 						</form>
 
@@ -66,13 +65,13 @@
 							<div class="title">
 
 								<h4 class="clearfix">
-									<span class="left">Transportation Rate List</span> <a
-										href="<s:url action='viewTransportationRate' />"
-										class="right box-form">
-										<button class="btn btn-primary">ADD</button>
+									<span class="left">Transportation Rate List</span> 
+									<a href="<s:url action='viewTransportationRate' />" class="right box-form">
+										<button class="btn btn-info"><span class="icon15 icomoon-icon-plus-2 white"></span> ADD</button>                      
 									</a>
 								</h4>
 							</div>
+							
 							<div class="content noPad clearfix">
 								<display:table name="transportationRateList" requestURI="/listTransportationRate.action" export="true"
 									pagesize="10"

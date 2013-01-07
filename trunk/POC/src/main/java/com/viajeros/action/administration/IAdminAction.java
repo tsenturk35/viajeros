@@ -14,6 +14,6 @@ public interface IAdminAction {
 
 	public void setPrimaryId(String primaryId) ;
 	
-	public String getEntityName();
 	
+	public String getEntityName();
 }

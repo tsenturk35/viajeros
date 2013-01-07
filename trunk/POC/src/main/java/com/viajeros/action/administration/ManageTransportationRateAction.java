@@ -3,21 +3,18 @@ package com.viajeros.action.administration;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import com.viajeros.dao.IDestinationDao;
 import com.viajeros.dao.ITransportationRateDao;
+import com.viajeros.dao.IVehicleTypeDao;
 import com.viajeros.entity.Client;
 import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
 import com.viajeros.entity.VehicleType;
 import com.viajeros.utils.Strings;
+
 
 public class ManageTransportationRateAction extends AbstractAdminAction {
 
@@ -29,14 +26,17 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 
 	private TransportationRate transportationRate = new TransportationRate();
 	private List<TransportationRate> transportationRateList = new ArrayList<TransportationRate>();
-	private List<Destination> sourceIdList;
+	
 	private List<Destination> destinationIdList;
 	private List<Client> clientIdList;
 	private List<VehicleType> vehicletypeIdList;
 
 	@Autowired
 	private ITransportationRateDao transportationRatesDao;
-
+	@Autowired
+	private IVehicleTypeDao vehicleTypeDao;
+	@Autowired
+	private IDestinationDao destinationDao;
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String save() {
@@ -47,14 +47,16 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 
 	@Transactional(readOnly = true)
 	public String view() {
-		destinationIdList = transportationRatesDao.getAlldestinationIdList();
-		vehicletypeIdList = transportationRatesDao.getAllVehicleTypeIdList();
-		sourceIdList = transportationRatesDao.getAllSourceId();
-		clientIdList = transportationRatesDao.getAllClientIdList();
+
+		destinationIdList = destinationDao.getDestinationList();
+		clientIdList = transportationRatesDao.getClientList();
+		vehicletypeIdList = vehicleTypeDao.getVehicleTypeList();
+		
 		if(!Strings.hasValue(getPrimaryId()))
 			return INPUT;
-		transportationRate = transportationRatesDao.listTransportationRatesById(Long.valueOf(getPrimaryId()));
-	
+
+		transportationRate = transportationRatesDao.getTransportationRatesById(Long.valueOf(getPrimaryId()));
+		
 		return INPUT;
 	}
 
@@ -88,13 +90,6 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 		this.vehicletypeIdList = vehicletypeIdList;
 	}
 
-	public List<Destination> getSourceIdList() {
-		return sourceIdList;
-	}
-
-	public void setSourceIdList(List<Destination> sourceIdList) {
-		this.sourceIdList = sourceIdList;
-	}
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String delete() {

@@ -74,6 +74,8 @@
 							
 							 <s:form action="saveDestination">
 								<s:textfield name="destination.name" label="Destination Name" required="true"/>
+								<s:hidden name="destination.destinationId" />
+								<s:hidden name="destination.version" />
 								<s:submit type="button" value="Save Changes"/>
 							 </s:form> 
 							</div>
