@@ -62,8 +62,6 @@ public class ManageDestinationAction extends AbstractAdminAction {
 	public String delete(){
 		if(!Strings.hasValue(getPrimaryId()))
 			return INPUT;
-		destinationList =  destinationDao.getDestinationList();
-		
 		try {
 			destinationDao.deleteDestination(Long.valueOf(getPrimaryId()));
 		} catch (NumberFormatException e) {
@@ -73,7 +71,7 @@ public class ManageDestinationAction extends AbstractAdminAction {
 			addActionError(e.getMessage());
 			return SUCCESS;
 		} 
-		
+		destinationList =  destinationDao.getDestinationList();
 		
 		addActionMessage("Destination deleted successfully!");
 		
