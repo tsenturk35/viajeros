@@ -1,15 +1,10 @@
 package com.viajeros.entity;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @NamedQueries({ @NamedQuery(name = "Client.getAllClientId", query = "select clientId from Client client order by clientId asc ") })
@@ -26,12 +21,6 @@ public class Client {
 
 	@Column(name = "address")
 	private String address;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = TransportationRate.class, mappedBy = "client")
-	private Set<TransportationRate> transportationRates;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = DetentionRate.class, mappedBy = "client")
-	private Set<DetentionRate> detentionRates;
 
 	public Long getClientId() {
 		return clientId;
@@ -55,23 +44,6 @@ public class Client {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Set<TransportationRate> getTransportationRates() {
-		return transportationRates;
-	}
-
-	public void setTransportationRates(
-			Set<TransportationRate> transportationRates) {
-		this.transportationRates = transportationRates;
-	}
-
-	public Set<DetentionRate> getDetentionRates() {
-		return detentionRates;
-	}
-
-	public void setDetentionRates(Set<DetentionRate> detentionRates) {
-		this.detentionRates = detentionRates;
 	}
 
 	@Override
