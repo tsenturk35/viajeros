@@ -41,9 +41,10 @@ public abstract class AbstractDaoIntegrationTest extends TestCase{
 	public void runBare() throws Throwable {
 	   try{
 		   super.runBare();
-	   }catch(Exception e){
-		   getSessionFactory().getCurrentSession().getTransaction().rollback();
+	   }catch(Throwable e){
 		   e.printStackTrace();
+		   getSessionFactory().getCurrentSession().getTransaction().rollback();
+		   
 		   throw e;
 	   }
 	}
