@@ -40,6 +40,7 @@
                                 <li><a href='<s:url action="listTransportationRate" />'><span class="icon16 wpzoom-calculator"></span>Transportation Rate</a></li>
                                 <li><a href='<s:url action="listRate" />'><span class="icon16 wpzoom-user-2"></span>Clients</a></li>
                                 <li><a href='<s:url action="listVehicleType" />'><span class="icon16  wpzoom-truck"></span>Vehicle Types</a></li>
+                                <li><a href='<s:url action="listDetentionRate" />'><span class="icon16  wpzoom-truck"></span>Detention Rates</a></li>
                             </ul>
                         </li>
                     

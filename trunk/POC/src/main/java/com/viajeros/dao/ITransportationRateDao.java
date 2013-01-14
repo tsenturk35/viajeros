@@ -3,9 +3,7 @@ package com.viajeros.dao;
 import java.util.List;
 
 import com.viajeros.entity.Client;
-import com.viajeros.entity.Destination;
 import com.viajeros.entity.TransportationRate;
-import com.viajeros.entity.VehicleType;
 
 public interface ITransportationRateDao {
 

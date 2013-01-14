@@ -26,7 +26,7 @@
 
                 <div class="heading">
 
-                    <h3>Destination</h3>                    
+                    <h3>Transportation Rate</h3>                    
 
                     <div class="resBtnSearch">
                         <a href="#"><span class="icon16 brocco-icon-search"></span></a>

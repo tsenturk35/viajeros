@@ -42,6 +42,7 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 	public String save() {
 		transportationRatesDao.updateTransportationRate(transportationRate);
 		transportationRateList = transportationRatesDao.getAllTransportationRates();
+		addActionMessage("Transportation Rate saved successfully.");
 		return SUCCESS;
 	}
 
@@ -56,7 +57,8 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 			return INPUT;
 
 		transportationRate = transportationRatesDao.getTransportationRatesById(Long.valueOf(getPrimaryId()));
-		
+		if(null==transportationRate)
+			addActionError("Error: Transportation Rate not found!");
 		return INPUT;
 	}
 

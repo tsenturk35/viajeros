@@ -1,7 +1,6 @@
 package com.viajeros.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,13 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
-import com.viajeros.entity.AuditStamp;
+import com.viajeros.utils.Strings;
 
 @Entity
 @Table(name = "deten_rate")
-public class DetentionRate {
-
+public class DetentionRate implements IOperable {
+	
+	@Version
+	private Long version;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "deten_rate_id")
@@ -39,22 +42,21 @@ public class DetentionRate {
 
 	@Column(name = "deten_days")
 	private int detentionDays;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Destination.class)
 	@JoinColumn(name = "destn_id", referencedColumnName = "destn_id", insertable = false, updatable = false)
 	private Destination destination;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Client.class)
 	@JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
 	private Client client;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = VehicleType.class)
 	@JoinColumn(name = "vehicle_type_id", referencedColumnName = "vehicle_type_id", insertable = false, updatable = false)
 	private VehicleType vehicleType;
-	
 
-	@Embedded
-	private AuditStamp auditStamp;
+//	@Embedded
+//	private AuditStamp auditStamp;
 
 	public Long getDetentionRateId() {
 		return detentionRateId;
@@ -104,6 +106,14 @@ public class DetentionRate {
 		this.amount = amount;
 	}
 
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+	
 	public int getDetentionDays() {
 		return detentionDays;
 	}
@@ -112,13 +122,13 @@ public class DetentionRate {
 		this.detentionDays = detentionDays;
 	}
 
-	public AuditStamp getAuditStamp() {
-		return auditStamp;
-	}
-
-	public void setAuditStamp(AuditStamp auditStamp) {
-		this.auditStamp = auditStamp;
-	}
+//	public AuditStamp getAuditStamp() {
+//		return auditStamp;
+//	}
+//
+//	public void setAuditStamp(AuditStamp auditStamp) {
+//		this.auditStamp = auditStamp;
+//	}
 
 	public Destination getDestination() {
 		return destination;
@@ -168,6 +178,13 @@ public class DetentionRate {
 		} else if (!detentionRateId.equals(other.detentionRateId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String getPrimaryId() {
+		if (null == getDetentionRateId())
+			return Strings.EMPTY;
+		return getDetentionRateId().toString();
 	}
 
 }
