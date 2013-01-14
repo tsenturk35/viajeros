@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.ModelDriven;
 import com.viajeros.dao.IVehicleTypeDao;
 import com.viajeros.entity.VehicleType;
+import com.viajeros.utils.Strings;
 
-public class ManageVehicleTypeAction extends  AbstractAdminAction {
-	
+public class ManageVehicleTypeAction extends AbstractAdminAction {
+
 	public ManageVehicleTypeAction() {
 		super();
 	}
@@ -20,7 +20,7 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction {
 	private VehicleType vehicleType = new VehicleType();
 	private List<VehicleType> vehicleTypeList = new ArrayList<VehicleType>();
 	private long vehicleTypeId;
-	
+
 	@Autowired
 	private IVehicleTypeDao vehicleTypeDao;
 
@@ -31,13 +31,27 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction {
 	public void setVehicleTypeDao(IVehicleTypeDao vehicleTypeDao) {
 		this.vehicleTypeDao = vehicleTypeDao;
 	}
-	
+
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String save() {
 		vehicleTypeDao.updateVehicleType(vehicleType);
+		vehicleTypeList = vehicleTypeDao.getVehicleTypeList();
+		addActionMessage("Vehicle Type saved successfully.");
 		return SUCCESS;
 	}
-	
+
+	@Transactional(readOnly = true)
+	public String view() {
+		if (!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		vehicleType = vehicleTypeDao.getVehicleTypeById(Long
+				.valueOf(getPrimaryId()));
+
+		if (null == vehicleType)
+			addActionError("Error: Vehicle Type not found!");
+		return INPUT;
+	}
+
 	@Transactional(readOnly = true)
 	public String list() {
 		vehicleTypeList = vehicleTypeDao.getVehicleTypeList();
@@ -46,16 +60,22 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction {
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	public String delete() {
-		vehicleTypeDao.deleteVehicleType(getVehicleTypeId());
+		if (!Strings.hasValue(getPrimaryId()))
+			return INPUT;
+		vehicleTypeDao.deleteVehicleType(Long.valueOf(getPrimaryId()));
+
+		vehicleTypeList = vehicleTypeDao.getVehicleTypeList();
+		addActionMessage("Vehicle Type deleted successfully");
+
 		return SUCCESS;
 	}
 
-//	@Transactional(readOnly = false, rollbackFor = Throwable.class)
-//	public String edit() {
-//		vehicleType = vehicleTypeDao.listVehicleTypeById(getVehicleTypeId());
-//		return SUCCESS;
-//	}
-	
+	// @Transactional(readOnly = false, rollbackFor = Throwable.class)
+	// public String edit() {
+	// vehicleType = vehicleTypeDao.listVehicleTypeById(getVehicleTypeId());
+	// return SUCCESS;
+	// }
+
 	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
@@ -78,11 +98,6 @@ public class ManageVehicleTypeAction extends  AbstractAdminAction {
 
 	public void setVehicleTypeId(long vehicleTypeId) {
 		this.vehicleTypeId = vehicleTypeId;
-	}
-
-	@Override
-	public String view() {
-		return INPUT;
 	}
 
 	@Override

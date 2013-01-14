@@ -44,7 +44,11 @@
 		</action>
 
 		<!-- Vehicle Type end -->
-
+<action name="*DetentionRate" method="{1}"
+			class="manageRateAction">
+			<result name="input">/RateViewEdit.jsp</result>
+			<result name="success">/RateList.jsp</result>
+		</action>
 	</package>
 
 </struts>

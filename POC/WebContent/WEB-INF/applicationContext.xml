@@ -38,5 +38,6 @@
         <bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
         <bean id="transportationRatesDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
         <bean id="vehicleTypeDao" class="com.viajeros.dao.VehicleTypeDaoImpl" />
+              <bean id="detentionRatesDao" class="com.viajeros.dao.DetentionRatesDaoImpl" />
 
 </beans>
