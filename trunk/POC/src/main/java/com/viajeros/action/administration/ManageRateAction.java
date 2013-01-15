@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.viajeros.dao.IClientDao;
 import com.viajeros.dao.IDestinationDao;
 import com.viajeros.dao.IDetentionRateDao;
 import com.viajeros.dao.IVehicleTypeDao;
@@ -36,7 +37,9 @@ public class ManageRateAction extends AbstractAdminAction {
 	private IVehicleTypeDao vehicleTypeDao;
 	@Autowired
 	private IDestinationDao destinationDao;
-
+	@Autowired
+	private IClientDao clientDao;
+	
 	@Transactional(readOnly = true)
 	public String list() {
 		detentionRateList = detentionRatesDao.getAllDetentionRates();
@@ -47,7 +50,7 @@ public class ManageRateAction extends AbstractAdminAction {
 	@Transactional(readOnly = true)
 	public String view() {
 		destinationIdList = destinationDao.getDestinationList();
-		clientIdList = detentionRatesDao.getClientList();
+		clientIdList = clientDao.getClientList();
 		vehicletypeIdList = vehicleTypeDao.getVehicleTypeList();
 		if (!Strings.hasValue(getPrimaryId()))
 			return INPUT;

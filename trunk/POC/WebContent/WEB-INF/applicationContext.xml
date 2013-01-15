@@ -39,11 +39,14 @@
 	<bean id="manageVehicleTypeAction"
 		class="com.viajeros.action.administration.ManageVehicleTypeAction"
 		scope="prototype" />
+	<bean id="manageClientAction" class="com.viajeros.action.administration.ManageClientAction"
+		scope="prototype" />
 
 	<!-- Dao Class beans -->
 	<bean id="destinationDao" class="com.viajeros.dao.DestinationDaoImpl" />
 	<bean id="transportationRatesDao" class="com.viajeros.dao.TransportationRatesDaoImpl" />
 	<bean id="vehicleTypeDao" class="com.viajeros.dao.VehicleTypeDaoImpl" />
 	<bean id="detentionRatesDao" class="com.viajeros.dao.DetentionRatesDaoImpl" />
+	<bean id="clientDao" class="com.viajeros.dao.ClientDaoImpl" />
 
 </beans>

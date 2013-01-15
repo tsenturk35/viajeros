@@ -6,11 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
+
+import com.viajeros.utils.Strings;
 
 @NamedQueries({ @NamedQuery(name = "Client.getAllClientId", query = "select clientId from Client client order by clientId asc ") })
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements IOperable {
+	
+	@Version
+	private Long version;
 
 	@Id
 	@Column(name = "client_id")
@@ -70,6 +76,21 @@ public class Client {
 		} else if (!clientId.equals(other.clientId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String getPrimaryId() {
+		if (null == getClientId())
+			return Strings.EMPTY;
+		return getClientId().toString();
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 }
