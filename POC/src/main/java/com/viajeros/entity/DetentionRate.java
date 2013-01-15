@@ -28,7 +28,7 @@ public class DetentionRate implements IOperable {
 	@Column(name = "src_id")
 	private Long sourceId;
 
-	@Column(name = "dest_id")
+	@Column(name = "destn_id")
 	private Long destinationId;
 
 	@Column(name = "client_id")

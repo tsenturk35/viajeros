@@ -98,6 +98,8 @@ public class ManageTransportationRateAction extends AbstractAdminAction {
 		if(!Strings.hasValue(getPrimaryId()))
 			return INPUT;
 		transportationRatesDao.deleteTransportationRate(Long.valueOf(getPrimaryId()));
+		transportationRateList = transportationRatesDao.getAllTransportationRates();
+		addActionMessage("Transportation Rate deleted successfully!");
 		return SUCCESS;
 	}
 

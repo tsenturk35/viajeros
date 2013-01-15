@@ -71,6 +71,8 @@ public class ManageRateAction extends AbstractAdminAction {
 		if (!Strings.hasValue(getPrimaryId()))
 			return INPUT;
 		detentionRatesDao.deleteDetentionRate(Long.valueOf(getPrimaryId()));
+		detentionRateList = detentionRatesDao.getAllDetentionRates();
+		addActionMessage("Transportation Rate deleted successfully!");
 		return SUCCESS;
 	}
 
