@@ -7,12 +7,12 @@
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.ui.theme" value="viajeros" />
 	<constant name="struts.ui.templateDir" value="template" />
-		
+
 
 	<package name="default" extends="struts-default" namespace="/">
 
 		<action name="*DetentionRate" method="{1}" class="manageRateAction">
-		<result name="input">/RateViewEdit.jsp</result>
+			<result name="input">/RateViewEdit.jsp</result>
 			<result name="success">/RateList.jsp</result>
 		</action>
 
@@ -44,11 +44,13 @@
 		</action>
 
 		<!-- Vehicle Type end -->
-<action name="*DetentionRate" method="{1}"
-			class="manageRateAction">
-			<result name="input">/RateViewEdit.jsp</result>
-			<result name="success">/RateList.jsp</result>
+
+		<!-- Client Type -->
+		<action name="*Client" method="{1}" class="manageClientAction">
+			<result name="input">/ClientViewEdit.jsp</result>
+			<result name="success">/ClientList.jsp</result>
 		</action>
+		<!-- Client Type -->
 	</package>
 
 </struts>

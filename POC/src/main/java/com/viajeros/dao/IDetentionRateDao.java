@@ -2,7 +2,6 @@ package com.viajeros.dao;
 
 import java.util.List;
 
-import com.viajeros.entity.Client;
 import com.viajeros.entity.DetentionRate;
 
 public interface IDetentionRateDao {
@@ -15,5 +14,4 @@ public interface IDetentionRateDao {
 
 	public void deleteDetentionRate(long anId);
 
-	public List<Client> getClientList();
 }

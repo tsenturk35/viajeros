@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.viajeros.entity.Client;
 import com.viajeros.entity.DetentionRate;
 
 @SuppressWarnings("unchecked")
@@ -48,11 +47,5 @@ public class DetentionRatesDaoImpl extends AbstractDaoImpl implements	IDetention
 	getSession().delete(detentionRate);
 		
 	}
-
-	@Override
-	public List<Client> getClientList() {
-		return getSession().createQuery(" from Client ").list();
-	}
-
 
 }

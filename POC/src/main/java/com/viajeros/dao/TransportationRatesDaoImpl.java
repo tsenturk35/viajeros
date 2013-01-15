@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.viajeros.entity.Client;
 import com.viajeros.entity.TransportationRate;
 import com.viajeros.entity.VehicleType;
 
@@ -51,11 +50,6 @@ public class TransportationRatesDaoImpl extends AbstractDaoImpl implements	ITran
 	@Override
 	public TransportationRate getTransportationRatesById(long aTransportationRateId) {
 		return (TransportationRate) getSession().get(TransportationRate.class, aTransportationRateId);
-	}
-
-	@Override
-	public List<Client> getClientList() {
-		return getSession().createQuery(" from Client ").list();
 	}
 
 }
