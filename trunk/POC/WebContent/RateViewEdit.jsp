@@ -65,7 +65,7 @@
                                 <div class="title">
                                     
                                     <h4 class="clearfix"><span class="left">Detention Rate View/Edit</span>
-                                    <a href="<s:url action='listDetenetionRate' />" class="right box-form">
+                                    <a href="<s:url action='listDetentionRate' />" class="right box-form">
                                     	<button class="btn btn-info"><span class="icon16 typ-icon-back white"></span> Back</button>
                                 	</a>
                                     </h4>
