@@ -1,0 +1,3 @@
+### De Viajeros ###
+
+Hermes - The god of travel, messengers, trade, thievery, cunning wiles, language, writing, diplomacy, athletics, and animal husbandry. He is the messenger of the gods, a psychopomp who leads the souls of the dead into Hades' realm, and the son of Zeus and Maia. He was depicted either as a handsome and athletic beardless youth, or as an older bearded man. His attributes include the herald's wand or caduceus, winged sandals, and a traveler's cap. His sacred animals are the tortoise, the ram, and the hawk.
